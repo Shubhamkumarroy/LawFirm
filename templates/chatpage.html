@@ -1,0 +1,32 @@
+<!-- chat/templates/chat/chat.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat with {{ recipient_username }}</title>
+</head>
+<body>
+    <form action="{% url "chat" u1.id u2.id  %}" method="POST">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+    {{user.username}}
+    {% endif %}
+    <a href="{% url "logoutuser" %}">Logout</a>
+    <div id="chat">
+        {% for message in chat_history %}
+            <p>{{ message.sender }}: {{ message.content }}</p>
+        {% endfor %}
+    </div>
+    <br>
+    <br>
+    <br>
+    <h1>Chat with {{ u2 }}</h1>
+    <div id="chat"></div>
+    <input name="message" id="message-input" type="text">
+    <button id="send-button">Send</button>
+    </form>
+    
+
+
+
+</body>
+</html>
