@@ -1,0 +1,15 @@
+git init 
+git add .
+git commit -m "msg"
+git remote add origin link 
+git push origin master
+
+
+
+clone
+git clone link
+
+//collaborator
+git pull origin master
+
+

@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+  /* main image  */
+
+
+ 
+  
+  .card-container{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 55px;
+    text-align: center;
+   }
+ 
+   .card{
+     
+     width: 280px;
+     height: auto;
+     position: relative;
+     background-color: white;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     border-radius: 15px;
+     padding: 20px;
+     /* transition: all .3s ease-in; */
+     transition:.5s 
+   }
+ 
+   .decoration{
+     text-decoration: none;
+     color: inherit;
+   }
+ 
+   .card .card-title{
+     padding: 20px 10px;
+     font-size: 1.5rem;
+     text-transform: uppercase;
+     text-shadow: 1px 0px 2px #0b0b0b;
+   }
+ 
+   .card:hover{
+     box-shadow: 0 0 2px 2px  #040404;
+     transform: translateY(-25px)
+   }
+ 

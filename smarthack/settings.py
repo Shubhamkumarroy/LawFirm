@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     # 'daphne' ,
-    # 'channels' ,
+    'channels' ,
     'django.contrib.staticfiles',
-    'myapp',
+    'myprojectapp',
     
     # 'channels' ,
 ]
@@ -82,7 +82,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'smarthack.wsgi.application'
-# ASGI_APPLICATION = "smarthack.asgi.application"
+ASGI_APPLICATION = "smarthack.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 
 # Database
