@@ -13,6 +13,9 @@ admin.site.register(Message)
 admin.site.register(Typelawer)
 admin.site.register(Advocate)
 admin.site.register(Advocatecatagory)
+admin.site.register(Advocatecatagoryfin)
+admin.site.register(Advocatefin)
+admin.site.register(Aribitration_mediator)
 
 
 # Register your models here.

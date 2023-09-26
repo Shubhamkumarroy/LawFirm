@@ -6,7 +6,8 @@
     <br>
     <section id="SEARCH">
         <div class="my-2">
-         <form>
+         <form action="{% url "searchlawyer" %}" method="post">
+            {% csrf_token %}
     <div class="flex w-1/3 mx-auto">
         <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Your Email</label>
         <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 " type="button">All categories <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -15,28 +16,33 @@
         <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
             <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdown-button">
             <li>
-                <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Mockups</button>
+                <a href="{% url "somebestadvocates" %}"><button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Advocates</button></a>
+                
             </li>
             <li>
-                <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Templates</button>
+                <a href="{% url "Arbitrators_Mediators" %}"><button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Arbitrators</button></a>
+                
             </li>
             <li>
-                <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Design</button>
+                <a href="{% url "Arbitrators_Mediators" %}"><button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Mediators</button></a>
+                
             </li>
             <li>
-                <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Logos</button>
+                <a href="#"><button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Notaries</button></a>
+                
             </li>
             </ul>
         </div>
         <div class="relative w-full">
-            <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Search Mockups, Logos, Design Templates..." required>
-            <button type="submit" class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            <input type="search" name="searchval" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Search by Lawyer'name" required>
+             <button type="submit" class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                 </svg>
                 <span class="sr-only">Search</span>
-            </button>
+            </button> 
         </div>
+   
     </div>
          </form>
         </div>
@@ -48,7 +54,7 @@
             <div class=" w-10/12 mx-auto ">
                 <a href="{% url "consult" %}">
                     <div >
-                        <img src="{% static 'image/judge_2.png' %}" alt="LawF">
+                        <img src="{% static 'image/judge_onl.png' %}" alt="LawF">
                     </div>
                 </a>
             </div>
@@ -61,63 +67,64 @@
         <div id="Heading" class="px-16 my-10">
                 
             <h4 class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 ">Features</h4>
-            <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit.subham madarchod hahahhahahah</p>
+            {% comment %} <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit.subham madarchod hahahhahahah</p> {% endcomment %}
 
         </div>
         <div class="mx-24 flex justify-between ">       
-          <div class="w-64 bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
-             <img class="rounded-t-md" src="{% static 'image/imgn3.jpg' %}" alt="" />
-            </a>
-            <div class="p-1">
-             <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Noteworthy technology acquisitions 2021</h5>
-             </a>
-             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise</p>     
+          <div class="w-64  bg-white border border-gray-200 rounded-lg shadow ">
+            {% comment %} <a href="#"> {% endcomment %}
+             <img class="rounded-t-md h-48 w-64"  src="{% static 'image/imgn3.jpg' %}" alt="" />
+            {% comment %} </a> {% endcomment %}
+            <div class="px-4">
+             {% comment %} <a href="#"> {% endcomment %}
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Legal Services</h5>
+             {% comment %} </a> {% endcomment %}
+             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Find transparent and authenticate Legal Services at your disposal.</p>     
             </div>
           </div>
           <div class="w-64 bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
-             <img class="rounded-t-md" src="{% static 'image/imgn3.jpg' %}" alt="" />
-            </a>
-            <div class="p-1">
-             <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Noteworthy technology acquisitions 2021</h5>
-             </a>
-             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise</p>     
+            {% comment %} <a href="#"> {% endcomment %}
+             <img class="rounded-t-md h-48 w-64 " src="{% static 'image/bloging.jpeg' %}" alt="" />
+            {% comment %} </a> {% endcomment %}
+            <div class="px-4">
+             {% comment %} <a href="#"> {% endcomment %}
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Blogging space</h5>
+             {% comment %} </a> {% endcomment %}
+             
+             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Know whats going on recently in the judicial world.Recent Cases , thoughts.</p>     
             </div>
           </div> 
           <div class="w-64 bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
-             <img class="rounded-t-md" src="{% static 'image/imgn3.jpg' %}" alt="" />
-            </a>
-            <div class="p-1">
-             <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Noteworthy technology acquisitions 2021</h5>
-             </a>
-             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise</p>     
+            {% comment %} <a href="#"> {% endcomment %}
+             <img class="rounded-t-md h-48 w-64" src="{% static 'image/cyclo.jpeg' %}" alt="" />
+            {% comment %} </a> {% endcomment %}
+            <div class="px-4">
+             {% comment %} <a href="#"> {% endcomment %}
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Customized Solution</h5>
+             {% comment %} </a> {% endcomment %}
+             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Tell your legal problem and get recommended the best lawyers with AI enabled search </p>     
             </div>
           </div> 
           <div class="w-64 bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
-             <img class="rounded-t-md" src="{% static 'image/imgn3.jpg' %}" alt="" />
+            {% comment %} <a href="#"> {% endcomment %}
+             <img class="rounded-t-md h-48 w-64" src="{% static 'image/competition.jpeg' %}" alt="" />
             </a>
-            <div class="p-1">
-             <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Noteworthy technology acquisitions 2021</h5>
-             </a>
-             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise</p>     
+            <div class="px-4">
+             {% comment %} <a href="#"> {% endcomment %}
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Competitiveness</h5>
+             {% comment %} </a> {% endcomment %}
+             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">The website hosts several competition to enhance user experience and learn through fun.</p>     
             </div>
           </div>
           <div class="w-64 bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
-             <img class="rounded-t-md" src="{% static 'image/imgn3.jpg' %}" alt="" />
-            </a>
-            <div class="p-1">
-             <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Noteworthy technology acquisitions 2021</h5>
-             </a>
-             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise</p>     
+            {% comment %} <a href="#"> {% endcomment %}
+             <img class="rounded-t-md h-48 w-64" src="{% static 'image/integration.jpeg' %}" alt="" />
+            {% comment %} </a> {% endcomment %}
+            <div class="px-4">
+             {% comment %} <a href="#"> {% endcomment %}
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Easy Integration</h5>
+             {% comment %} </a> {% endcomment %}
+             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Platform integrated with other legal service providers and institutions such as courts, bar associations etc.</p>     
             </div>
           </div>   
         </div>
@@ -128,14 +135,14 @@
             <div id="Heading" class="px-16">
                 
              <h4 class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 ">Categories </h4>
-             <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"><strong><h3>What we are providing,Get Your best Lawyer on the basis of requirment</h3></strong></p>
+             {% comment %} <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"><strong><h3>What we are providing,Get Your best Lawyer on the basis of requirment</h3></strong></p> {% endcomment %}
 
             </div>
             <div class="mx-48 flex justify-between ">
                 
                 <a href="{% url "advocates_by_type" "criminal-lawyers" %}">
                     <div class="flex flex-col items-center pb-10 my-12 ">
-                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/imgn3.jpg' %}" alt="image"/>
+                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/murder.jpg' %}" alt="image"/>
                         <h5 class="mb-1 text-xl font-medium text-gray-900 "><strong>
                             Criminal lawyers
                         </strong></h5>
@@ -144,7 +151,7 @@
                 </a>
                 <a href="{% url "advocates_by_type" "family-lawyers" %}">
                     <div class="flex flex-col items-center pb-10 my-12 ">
-                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/imgn3.jpg' %}" alt="image"/>
+                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/family.jpg' %}" alt="image"/>
                         <h5 class="mb-1 text-xl font-medium text-gray-900 "><strong>
                             Family lawyers
                         </strong></h5></h5>
@@ -153,7 +160,7 @@
                 </a>
                 <a href="{% url "advocates_by_type" "civil-lawyers" %}">
                     <div class="flex flex-col items-center pb-10 my-12 ">
-                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/imgn3.jpg' %}" alt="image"/>
+                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/civil_rights.jpg' %}" alt="image"/>
                         <h5 class="mb-1 text-xl font-medium text-gray-900 "><strong>
                             Civil lawyers
                         </strong></h5></h5>
@@ -162,7 +169,7 @@
                 </a>
                 <a href="{% url "advocates_by_type" "arbitration-lawyers" %}">
                     <div class="flex flex-col items-center pb-10 my-12 ">
-                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/imgn3.jpg' %}" alt="image"/>
+                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/housing.jpg' %}" alt="image"/>
                         <h5 class="mb-1 text-xl font-medium text-gray-900 "><strong>
                             Arbitration lawyers
                         </strong></h5></h5>
@@ -171,7 +178,7 @@
                 </a>
                 <a href="{% url "advocates_by_type" "corporate-lawyers" %}">
                     <div class="flex flex-col items-center pb-10 my-12 ">
-                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/imgn3.jpg' %}" alt="image"/>
+                        <img class="w-40 h-40 mb-3 rounded-full shadow-lg" src="{% static 'image/corporate.jpeg' %}" alt="image"/>
                         <h5 class="mb-1 text-xl font-medium text-gray-900 "><strong>
                             Corporate lawyers
                         </strong></h5></h5>
@@ -202,14 +209,14 @@
         <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
             <figure class="flex flex-col items-center justify-center p-8 text-center bg-white  rounded-t-lg md:rounded-t-none md:rounded-tl-lg">
                 <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 ">
-                    <h3 class="text-lg font-semibold text-gray-900 ">Very easy this was to integrate</h3>
-                    <p class="my-4">"andi mandi shandi teri maa randi "</p>
+                    <h3 class="text-lg font-semibold text-gray-900 ">"Life-Saver for Legal Troubles!"</h3>
+                    <p class="my-4">"I recently used this lawyer finding website to help me navigate a tricky legal situation. The platform was incredibly user-friendly, making it easy for me to input my requirements and get matched with the perfect lawyer. The lawyer I found through this website was exceptional—knowledgeable, responsive, and ultimately helped me resolve my legal issues. I highly recommend this website to anyone in need of legal assistance."</p>
                 </blockquote>
                 <figcaption class="flex items-center justify-center space-x-3">
                     <img class="rounded-full w-10 h-10" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
                     <div class="space-y-0.5 font-medium ">
-                        <div>Bonnie Green</div>
-                        <div class="text-sm text-gray-500">Developer at Open AI</div>
+                        <div>Shivam</div>
+                        {% comment %}  {% endcomment %}
                     </div>
                 </figcaption>    
             </figure>
@@ -218,14 +225,14 @@
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <figure class="flex flex-col items-center justify-center p-8 text-center bg-white  rounded-t-lg md:rounded-t-none md:rounded-tl-lg">
                 <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 ">
-                    <h3 class="text-lg font-semibold text-gray-900 ">Very easy this was to integrate</h3>
-                    <p class="my-4">"hello my naimeejkljkajlkjflkajkfjkajfksajklfjsaklfjksljfklsfklsjklfjakslfjklasjfkajfkjakfajfk  fkjfkajfkljakf ;fakjfkasjfkfjk kffjafkdjaskfja kfjksdjf"</p>
+                    <h3 class="text-lg font-semibold text-gray-900 ">"Efficient and Reliable Legal Matchmaking"</h3>
+                    <p class="my-4">"I had a pressing legal matter and needed to find a lawyer quickly. This website came to my rescue! The process of finding a suitable lawyer was seamless and efficient. The platform provided me with a list of qualified lawyers based on my needs and location. I was able to compare their profiles and choose the one that best fit my requirements. Thanks to this website, I found a fantastic lawyer who handled my case expertly. Five stars!"</p>
                 </blockquote>
                 <figcaption class="flex items-center justify-center space-x-3">
                     <img class="rounded-full w-10 h-10" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
                     <div class="space-y-0.5 font-medium ">
-                        <div>Bonnie Green</div>
-                        <div class="text-sm text-gray-500">Developer at Open AI</div>
+                        <div>Koushik Das</div>
+                        
                     </div>
                 </figcaption>    
             </figure>
@@ -234,14 +241,14 @@
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <figure class="flex flex-col items-center justify-center p-8 text-center bg-white  rounded-t-lg md:rounded-t-none md:rounded-tl-lg">
                 <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 ">
-                    <h3 class="text-lg font-semibold text-gray-900 ">Very easy this was to integrate</h3>
-                    <p class="my-4">"If you care for your time, I hands down would go with this."</p>
+                    <h3 class="text-lg font-semibold text-gray-900 ">"A One-Stop Solution for Legal Representation"</h3>
+                    <p class="my-4">"This lawyer finding website exceeded my expectations! I was overwhelmed by the thought of searching for a lawyer, but this platform made it hassle-free. I appreciated the detailed lawyer profiles, which helped me make an informed decision. The reviews and ratings from other users were invaluable. I found a highly competent lawyer through this website who guided me through the legal process with confidence and ease. I'll definitely be recommending this platform to friends and family."</p>
                 </blockquote>
                 <figcaption class="flex items-center justify-center space-x-3">
                     <img class="rounded-full w-10 h-10" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
                     <div class="space-y-0.5 font-medium ">
-                        <div>Bonnie Green</div>
-                        <div class="text-sm text-gray-500">Developer at Open AI</div>
+                        <div>Suraj kumar gupta</div>
+                        
                     </div>
                 </figcaption>    
             </figure>
@@ -250,14 +257,14 @@
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <figure class="flex flex-col items-center justify-center p-8 text-center bg-white  rounded-t-lg md:rounded-t-none md:rounded-tl-lg">
                 <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 ">
-                    <h3 class="text-lg font-semibold text-gray-900 ">Very easy this was to integrate</h3>
-                    <p class="my-4">"If you care for your time, I hands down would go with this."</p>
+                    <h3 class="text-lg font-semibold text-gray-900 ">"Your Go-To Destination for Legal Assistance"</h3>
+                    <p class="my-4">"I was in a legal bind and had no idea where to start. Thankfully, I stumbled upon this amazing lawyer finding website. It made the daunting task of finding a lawyer much more manageable. The search filters allowed me to narrow down my options based on my specific needs, and the website provided ample information about each lawyer's expertise. I was able to connect with a skilled lawyer who handled my case professionally. I'm grateful for this website—it truly simplifies the legal search process!"</p>
                 </blockquote>
                 <figcaption class="flex items-center justify-center space-x-3">
                     <img class="rounded-full w-10 h-10" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
                     <div class="space-y-0.5 font-medium ">
-                        <div>Bonnie Green</div>
-                        <div class="text-sm text-gray-500">Developer at Open AI</div>
+                        <div>Anket Bose</div>
+                        
                     </div>
                 </figcaption>    
             </figure>
@@ -266,14 +273,14 @@
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <figure class="flex flex-col items-center justify-center p-8 text-center bg-white  rounded-t-lg md:rounded-t-none md:rounded-tl-lg">
                 <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 ">
-                    <h3 class="text-lg font-semibold text-gray-900 ">Very easy this was to integrate</h3>
-                    <p class="my-4">"If you care for your time, I hands down would go with this."</p>
+                    <h3 class="text-lg font-semibold text-gray-900 ">"Exceptional Service and Results!"</h3>
+                    <p class="my-4">"I cannot express how grateful I am for this lawyer finding website. I was in a tough legal situation and needed a reliable attorney. The platform made the search straightforward and efficient. The interface is user-friendly and the range of lawyers available was impressive. I was able to connect with a lawyer who truly cared about my case, and they went above and beyond to ensure a favorable outcome. This website is a game-changer for anyone seeking legal representation. Highly recommend!"</p>
                 </blockquote>
                 <figcaption class="flex items-center justify-center space-x-3">
                     <img class="rounded-full w-10 h-10" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
                     <div class="space-y-0.5 font-medium ">
-                        <div>Bonnie Green</div>
-                        <div class="text-sm text-gray-500">Developer at Open AI</div>
+                        <div>Sachin kumar sharma</div>
+                        
                     </div>
                 </figcaption>    
             </figure>
@@ -316,92 +323,59 @@
         </div>
            
           <div class="card-container mb-5">
-    
-            <a href="/services.html" class="decoration">
-              <div class="card">
-                <div class="d-flex justify-content-center ">
-                  <img class="rounded-t-md" src="{% static 'image/imgn2.jpg' %}"  >
+          {% for l in Lawyers  %}
+            <a href="#" class="decoration">
+                <div class="card">
+                  <div class="d-flex justify-content-center ">
+                    <img class="rounded-t-md" src="{{ l.image_url }}"  >
+                  </div>
+                  <div class="card-title">{{l.name}}</div>
+                  <div class="card-text">
+                    {{l.experience}}
+                    <pre></pre>
+                    {{l.location}}
+                  </div>
                 </div>
-                <div class="card-title">Microsoft Azure</div>
-                <div class="card-text">
-                  Our company deals with  Microsoft Azure cloud platform delivering more than 200 services and features. 
-                </div>
-              </div>
-            </a>
-      
-      
-            <a href="/services.html" class="decoration">
-              <div class="card">
-                <div class="d-flex justify-content-center">
-                  <img class="rounded-t-md" src="{% static 'image/imgn3.jpg' %}" />
-                </div>
-                <div class="card-title">Office 365</div>
-        
-        
-                <div class="card-text">
-                  YR cloud specially deals with Office365. Office 365 is a Software as a Service (SaaS) solution
-                  
-                </div>
-              </div>
-            </a>
+              </a>
+            {% endfor %} 
             
       
-            <a href="/services.html" class="decoration">
-              <div class="card">
-                <div class="d-flex justify-content-center">
-                  <img class="rounded-t-md" src="{% static 'image/imgn3.jpg' %}" />
-                </div>
-                <div class="card-title">AWS</div>
-                <div class="card-text">
-                  YR cloud deals with Amazon Web Services and its generally viewed as the number one global vendor for cloud services.
-                </div>
-              </div>
-            </a>
-
-    
-       
-            <a href="/services.html" class="decoration">
-                <div class="card">
-                  <div class="d-flex justify-content-center">
-                    <img class="rounded-t-md" src="{% static 'image/imgn3.jpg' %}" />
-                  </div>
-                  <div class="card-title">Google Cloud</div>
-                  <div class="card-text">
-                    Our comapny considered the third vendor in the “top three” (along with AWS and Azure), Google Cloud is available globally.
-                  </div>
-                </div>
-              </a>
-        
-        
-              <a href="/services.html" class="decoration">
-                <div class="card">
-                  <div class="d-flex justify-content-center">
-                    <img class="rounded-t-md" src="{% static 'image/imgn2.jpg' %}"  />
-                  </div>
-                  <div class="card-title">Firewall</div>
-                  <div class="card-text">
-                    We are deals with all types of Antivirus Firewall.Anitivirus software-Norton, McAfee and AVG Etc
-                  </div>
-                </div>
-              </a>
-        
-        
-              <a href="/services.html" class="decoration">
-                <div class="card">
-                  <div class="d-flex justify-content-center">
-                    <img class="rounded-t-md" src="{% static 'image/imgn3.jpg' %}"  />
-                  </div>
-                  <div class="card-title">Licensing</div>
-                  <div class="card-text">
-                    YR cloud deals with all type of microsoft licensing  including 
-                    <br>
-                  
-                            Azure  , Dynamics 365 , Microsoft 365 , SQL Server etc
-                </div>
-              </div>
-              </a>
+      
+            
         </div>
       </div>
+
+    </section>
+    <br>
+    <section id="FOOTER">
+        <div class="mt-8  ">
+            <footer class=" shadow bg-gray-900 ">
+                <div class="w-full max-w-screen-xl mx-auto p-4 md:py-6">
+                    <div class="sm:flex sm:items-center sm:justify-between">
+                        <a href="{% url "home" %}" class="flex items-center mb-4 sm:mb-0">
+                            <img src="{% static "image/lawyerprof.jpeg" %}" class="h-8 mr-3" alt="Flowbite Logo" />
+                            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">LawFirm</span>
+                        </a>
+                        <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                            <li>
+                                <a href="#" class="mr-4 hover:underline md:mr-6 text-white ">About</a>
+                            </li>
+                            <li>
+                                <a href="#" class="mr-4 hover:underline md:mr-6 text-white">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#" class="mr-4 hover:underline md:mr-6 text-white">Licensing</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:underline text-white">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                    <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">LawFirm™</a>. All Rights Reserved.</span>
+                </div>
+            </footer>
+        </div>
 
     </section>
 
@@ -410,3 +384,4 @@
 
     
     {% endblock  %}
+    

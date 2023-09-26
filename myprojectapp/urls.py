@@ -25,7 +25,11 @@ urlpatterns = [
     path('submitproblem',views.submitproblem,name="submitproblem"),
     path('storedata',views.storedata,name="storedata"),
     path('advocates/<str:advocate_type>/', views.advocates_by_type, name='advocates_by_type'),
-
+    path('searchlawyer',views.searchlawyer,name="searchlawyer"),
+    path('somebestadvocates',views.somebestadvocates,name="somebestadvocates"),
+    path('arbitration_mediation_lawyers_data',views.arbitration_mediation_lawyers_data,name="arbitration_mediation_lawyers_data"),
+    path('webscrapdata',views.webscrapdata,name="webscrapdata"),
+     path('Arbitrators_Mediators',views.Arbitrators_Mediators,name="Arbitrators_Mediators"),
 
 
 

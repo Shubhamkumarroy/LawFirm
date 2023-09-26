@@ -28,6 +28,124 @@ from django.utils import timezone
 from django.db.models import Q
 import requests
 from bs4 import BeautifulSoup
+import openai
+from django.db.models import Subquery
+
+
+def get_gpt3_response(user_message):
+    api_key = "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"
+    openai.api_key = api_key
+    # Create a conversation prompt
+    conversation_history = [
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": user_message}
+    ]
+
+    # Convert conversation history to GPT-3.5 input format
+    prompt = "\n".join(f"{item['role']}: {item['content']}" for item in conversation_history)
+
+    # Get GPT-3.5 response
+    response = openai.Completion.create(
+        engine="text-davinci-002",  # GPT-3.5 engine
+        prompt=prompt,
+        max_tokens=150  # Adjust as needed
+    )
+
+    gpt3_response = response.choices[0].text.strip()
+    return gpt3_response
+
+# Example usage
+
+def fn(request):
+    #str="Choose from Given options what type of lawyer i need.and option are "
+    str = "Reply in one word from given options what type of lawyer i need and options are "
+    list1=[]
+    list1.append("arbitration-lawyers")
+    list1.append("anticipatory-bail-lawyers")
+    list1.append("banking-finance-lawyers")
+    list1.append("bankruptcy-insolvency-lawyers")
+    list1.append("breach-of-contract-lawyers")
+    list1.append("civil-lawyers")
+    list1.append("corporate-lawyers")
+    list1.append("family-lawyers")
+    list1.append("criminal-lawyers")
+    list1.append("cyber-crime-lawyers")
+    list1.append("domestic-violence-lawyers")
+    list1.append("divorce-lawyers")
+    list1.append("muslim-law-lawyers")
+    list1.append("wills-trusts-lawyers")
+    list1.append("copyright-patent-trademark-lawyers")
+    list1.append("court-marriage-lawyers")
+    list1.append("domestic-violence-lawyers")
+    list1.append("gst-lawyers")
+    list1.append("immigration-lawyers")
+    list1.append("labour-service-lawyers")
+    list1.append("media-entertainment-lawyers")
+    list1.append("medical-negligence-lawyers")
+    cnt=0
+    sz=len(list1)
+    for l1 in list1:
+        str +=l1
+        str +=" ,"
+
+   # str +="I need reply in one word and exact same to given option with hyphen."  
+    return str
+
+def lawerexactmatch(request):
+    list1=[]
+    list1.append("arbitration")
+    list1.append("anticipatory")
+    list1.append("banking")
+    list1.append("bankruptcy")
+    list1.append("breach")
+    list1.append("civil")
+    list1.append("corporate")
+    list1.append("family")
+    list1.append("criminal")
+    list1.append("cyber")
+    list1.append("domestic")
+    list1.append("divorce")
+    list1.append("muslim")
+    list1.append("wills")
+    list1.append("copyright")
+    list1.append("court")
+    list1.append("domestic")
+    list1.append("gst")
+    list1.append("immigration")
+    list1.append("labour")
+    list1.append("media")
+    list1.append("medical")
+    return list1
+def lawerecatagoryexactmatch(request):
+    list1=[]
+    list1.append("arbitration-lawyers")
+    list1.append("anticipatory-bail-lawyers")
+    list1.append("banking-finance-lawyers")
+    list1.append("bankruptcy-insolvency-lawyers")
+    list1.append("breach-of-contract-lawyers")
+    list1.append("civil-lawyers")
+    list1.append("corporate-lawyers")
+    list1.append("family-lawyers")
+    list1.append("criminal-lawyers")
+    list1.append("cyber-crime-lawyers")
+    list1.append("domestic-violence-lawyers")
+    list1.append("divorce-lawyers")
+    list1.append("muslim-law-lawyers")
+    list1.append("wills-trusts-lawyers")
+    list1.append("copyright-patent-trademark-lawyers")
+    list1.append("court-marriage-lawyers")
+    list1.append("domestic-violence-lawyers")
+    list1.append("gst-lawyers")
+    list1.append("immigration-lawyers")
+    list1.append("labour-service-lawyers")
+    list1.append("media-entertainment-lawyers")
+    list1.append("medical-negligence-lawyers")
+    return list1
+
+
+
+
+
 
 # Create your views here.
 def storedata(request):
@@ -46,6 +164,7 @@ def storedata(request):
     list1.append("domestic-violence-lawyers")
     list1.append("divorce-lawyers")
     list1.append("muslim-law-lawyers")
+
     cnt=0
     for l1 in list1:
         # URL of the page for the current advocate type
@@ -105,6 +224,172 @@ def storedata(request):
             print(f"Failed to retrieve the page for {l1}. Status code:", response.status_code)
 
     return render(request,'navebar.html')
+
+
+
+def webscrapdata(request):
+    list1=[]
+    list1.append("arbitration-lawyers")
+    list1.append("anticipatory-bail-lawyers")
+    list1.append("banking-finance-lawyers")
+    list1.append("bankruptcy-insolvency-lawyers")
+    list1.append("breach-of-contract-lawyers")
+    list1.append("civil-lawyers")
+    list1.append("corporate-lawyers")
+    list1.append("family-lawyers")
+    list1.append("criminal-lawyers")
+    list1.append("cyber-crime-lawyers")
+    list1.append("domestic-violence-lawyers")
+    list1.append("divorce-lawyers")
+    list1.append("muslim-law-lawyers")
+    list1.append("wills-trusts-lawyers")
+    list1.append("copyright-patent-trademark-lawyers")
+    list1.append("court-marriage-lawyers")
+    list1.append("domestic-violence-lawyers")
+    list1.append("gst-lawyers")
+    list1.append("immigration-lawyers")
+    list1.append("labour-service-lawyers")
+    list1.append("media-entertainment-lawyers")
+    list1.append("medical-negligence-lawyers")
+    # list1.append("property-lawyers")
+    # list1.append("rti-lawyers")
+    # list1.append("armed-forces-tribunal-lawyers")
+    # list1.append("consumer-court-lawyers")
+    cnt=0
+    max_page=2
+    for l1 in list1:
+        # URL of the page for the current advocate type
+        print(l1)
+        base_url = f'https://lawrato.com/{l1}'
+        cnt+=1
+        page_number=1
+        while page_number<=max_page:
+            print(page_number)
+            url = f'{base_url}?&page={page_number}'
+            page_number+=1
+            # Send an HTTP GET request to the URL
+            response = requests.get(url)
+
+           
+            if response.status_code == 200:
+                
+                soup = BeautifulSoup(response.text, 'html.parser')
+
+                
+                lawyer_listings = soup.find_all('div', class_='lawyer-item border-box')
+
+                
+                for lawyer in lawyer_listings:
+                    name = lawyer.find('h2', class_='media-heading').text.strip()
+                    location = lawyer.find('div', class_='location').text.strip()
+                    experience = lawyer.find('div', class_='experience').text.strip()
+                    image_url = lawyer.find('img', class_='media-object')['src']
+                    area_skill_div = lawyer.find('div', class_='area-skill')
+                    practice_area_skills = "Criminal, Consumer Court"
+                    if area_skill_div:
+                        div_contents = area_skill_div.find('div')
+                        if div_contents:
+                            practice_area_skills = div_contents.text.strip()
+
+                    rating = lawyer.find('span', class_='score').text.strip()
+                    advocate = Advocatefin(
+                        name=name,
+                        type=l1,
+                        location=location,
+                        experience=experience,
+                        rating=rating,
+                        image_url=image_url,
+                        practice_area_skills=practice_area_skills  
+                    )
+                
+                    cat = Advocatecatagoryfin(cat=l1)
+                    cat.save()
+                    advocate.save()
+
+            else:
+                print(f"Failed to retrieve the page for {l1}. Status code:", response.status_code)
+        print()
+
+    return render(request,'navebar.html')
+
+
+
+
+
+
+
+
+
+def arbitration_mediation_lawyers_data(request):
+    # Define the URL you want to scrape
+    url = 'https://www.leadindia.law/arbitration-and-mediation-lawyers'
+
+    # Set a custom User-Agent header to mimic a real web browser
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+    }
+
+    # Create a session to manage cookies
+    session = requests.Session()
+    response = session.get(url, headers=headers)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the HTML content of the page
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Find all the lawyer listings within the specified class
+        lawyer_listings = soup.find_all('div', class_='card shadow card-hover-shadow p-2')
+
+        # Loop through all the lawyer listings
+        for lawyer in lawyer_listings:
+            # Extract lawyer's name
+            name_element = lawyer.find('h6').find('a')
+            name = name_element.text.strip() if name_element else None
+
+            # Extract lawyer's rating
+            rating_element = lawyer.find('li', class_='list-inline-item ms-0 h6 small fw-bold mb-0')
+            rating = rating_element.text.strip() if rating_element else None
+
+            # Extract lawyer's experience
+            small_elements = lawyer.find_all('small')
+            if len(small_elements) >= 3:
+                experience = small_elements[0].get_text(strip=True)
+                location = small_elements[1].get_text(strip=True)
+                language = small_elements[2].get_text(strip=True)
+            else:
+                experience = location = language = None
+
+            # Extract lawyer's practice areas
+            practice_areas_element = lawyer.find('p', class_='p-0 m-0 h-75')
+            practice_areas = practice_areas_element.text.strip() if practice_areas_element else None
+
+            # Extract lawyer's contact link
+            contact_link_element = lawyer.find('a', class_='btn btn-xs btn-dark')
+            contact_link = contact_link_element['href'] if contact_link_element else None
+
+            # Extract lawyer's photo URL
+            photo_element = lawyer.find('img', class_='card-img')
+            photo_url = photo_element['src'] if photo_element else None
+
+            # Print or store the extracted information for each lawyer, including photo URL
+            lawyer_instance =Aribitration_mediator(
+            name=name,
+            rating=rating,
+            experience=experience,
+            location=location,
+            practice_areas=practice_areas,
+            language=language,
+            photo_url=photo_url,
+            contact_link=contact_link
+            )
+            lawyer_instance.save()
+    else:
+        print(f"Failed to retrieve the page. Status code:", response.status_code)
+
+    return render(request, 'navebar.html')
+
+
 def accountcreate(request):
         try:
             return render(request, 'signup.html')
@@ -154,7 +439,20 @@ def signup(request):
             if user is not None:
                 login(request, user)
                 id1 = user.id
-               
+                names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
+                distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
+                advocates_list = []
+
+                for name_dict in distinct_names:
+                    name = name_dict['name']
+                    advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
+                    if advocate:
+                        advocates_list.append(advocate)
+                # print(type(advocates))
+                print(advocates_list)
+                            # 'Lawyers': advocates
+                context['Lawyers']=advocates_list
+                
                 return render(request, 'index2.html', context)
             else:
                 return render(request, 'loginpage.html')
@@ -205,7 +503,23 @@ def signuplawyer(request):
             if user is not None:
                 login(request, user)
                 id1 = user.id
-               
+                distinct_names = Advocatefin.objects.values('name').distinct()[:6]
+                advocates = Advocatefin.objects.filter(name__in=Subquery(distinct_names))
+                # 'Lawyers': advocates
+                names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
+                distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
+                advocates_list = []
+
+                for name_dict in distinct_names:
+                    name = name_dict['name']
+                    advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
+                    if advocate:
+                        advocates_list.append(advocate)
+                # print(type(advocates))
+                print(advocates_list)
+                            # 'Lawyers': advocates
+                context['Lawyers']=advocates_list
+                        
                 return render(request, 'index2.html', context)
             else:
                 return render(request, 'loginpage.html')
@@ -244,7 +558,19 @@ def loginuser(request):
                     #  'lawyer':lawyer,
                     'lawyer':lawyer
                 }
+                names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
+                distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
+                advocates_list = []
 
+                for name_dict in distinct_names:
+                    name = name_dict['name']
+                    advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
+                    if advocate:
+                        advocates_list.append(advocate)
+                # print(type(advocates))
+                print(advocates_list)
+                            # 'Lawyers': advocates
+                context['Lawyers']=advocates_list
                 return render(request, 'index2.html', context)
             else:
                 error_message = "Invalid username or password."
@@ -265,6 +591,19 @@ def logoutuser(request):
             #  'lawyer':lawyer,
             'lawyer':lawyer
         }
+        names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
+        distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
+        advocates_list = []
+
+        for name_dict in distinct_names:
+            name = name_dict['name']
+            advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
+            if advocate:
+                advocates_list.append(advocate)
+        # print(type(advocates))
+        print(advocates_list)
+                    # 'Lawyers': advocates
+        context['Lawyers']=advocates_list
         return render(request, 'index2.html',context)
         
     except Exception as e:
@@ -282,10 +621,25 @@ def index(request):
         #  'lawyer':lawyer,
         'lawyer':lawyer
     }
-    return render(request, 'index2.html',context)
+    names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
+    distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
+    print(distinct_names)
+    advocates_list = []
+    # ad=Advocatefin.objects.all()
+    # print(len(ad))
+
+    for name_dict in distinct_names:
+        name = name_dict['name']
+        advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
+        if advocate:
+            advocates_list.append(advocate)
+    # print(type(advocates))
+    # print(advocates_list)
+                # 'Lawyers': advocates
+    context['Lawyers']=advocates_list
+    # return render(request, 'index2.html',context)
     try:
         if request.user.is_authenticated:
-            context = {}
             return render(request, 'index2.html', context)
         else:
             return render(request, 'signup.html')
@@ -302,6 +656,19 @@ def home(request):
         #  'lawyer':lawyer,
         'lawyer':lawyer
     }
+    names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
+    distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
+    advocates_list = []
+
+    for name_dict in distinct_names:
+        name = name_dict['name']
+        advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
+        if advocate:
+            advocates_list.append(advocate)
+    # print(type(advocates))
+    print(advocates_list)
+                # 'Lawyers': advocates
+    context['Lawyers']=advocates_list
     # print
     return render(request, 'index2.html',context)
 
@@ -347,9 +714,11 @@ def chat_with_user(request, recipient_username):
 @csrf_exempt
 def chat(request,receiver_id):
     if request.method == "POST":
-        return 
+        pass
     else : 
         chat_request = ChatRequest.objects.get(pk=receiver_id)
+        pass
+    return render(request,'navebar.html')
 
 
 
@@ -430,11 +799,18 @@ def send_chat_request(request,receiver_id):
         return render(request, 'error_page.html', {'error_message': error_message})
 
 
+
+
 def accept_chat_request(request, request_id):
-    chat_request = ChatRequest.objects.get(pk=request_id)
-    chat_request.accepted = True
-    chat_request.save()
-    return redirect('chat', chat_request.receiver.id)
+    try:
+        chat_request = ChatRequest.objects.get(pk=request_id)
+        chat_request.accepted = True
+        chat_request.save()
+        return redirect('chat', chat_request.receiver.id)
+    except Exception as e:
+        print(str(e))  
+        
+        return render(request, 'error.html', {'error_message': 'An error occurred while processing your request'})
 
 
 @login_required
@@ -475,26 +851,161 @@ def typelawyer(request,type):
     return render(request,'filteradvocate.html',context)
 
 def update(request,id1):
+    # write logic baad me not in priority
     try:
-        pass
-        user=request.user
-        # user
-    except:
-        pass
+        # print(request.user.username)
+        # user=User_detail.objects.filter(pk=request.user.id)
+        # print(user)
+        # return render(request,'navebar.html')
+        return render(request, 'profile.html')
+    except Exception as e:
+        error_message = f"An error occurred: {str(e)}"
+        return render(request, 'error_page.html', {'error_message': error_message})
+
+
+
 
 def consult(request):
-    return render(request,'problem.html')
+    try:
+        return render(request, 'problem.html')
+    except Exception as e:
+        error_message = f"An error occurred: {str(e)}"
+        return render(request, 'error.html', {'error_message': error_message})
+
+
+
 
 def submitproblem(request):
-    if request.method == "post":
-        city=request.post['city']
-        problem=request.post['problem']
+    try:
+        if request.method == "POST":
+            city = request.POST.get('city', '')
+            problem = request.POST.get('problem', '')
+            print(city)
+            print(problem)
+            if not city or not problem:
+                error_message = "Both 'city' and 'problem' are required."
+                return render(request, 'problem.html', {'error_message': error_message})
 
-    return render(request,'navebar.html')
+            user_message = problem
+            res = fn(request)
+            user_message += " "
+            user_message += res
+            print(user_message)
+
+            gpt3_response = get_gpt3_response(user_message)
+            gpt3_response = gpt3_response.lower()
+            item = lawerexactmatch(request)
+            lawyeritem = lawerecatagoryexactmatch(request)
+            ans = ""
+            ind = 0
+
+            for i1 in item:
+                if gpt3_response.find(i1) != -1:
+                    ans = lawyeritem[ind]
+                    break
+                ind += 1
+
+            print(ans)
+
+            if len(ans) == 0:
+                ans += "criminal-lawyers"
+            advocates = Advocatefin.objects.filter(type=ans)
+
+            return render(request, 'lawyerCard.html', {'Lawyers': advocates})
+    
+    except Exception as e:
+        error_message = f"An error occurred: {str(e)}"
+        return render(request, 'error.html', {'error_message': error_message}, status=500)
+    
+    return render(request, 'problem.html')
+
+    # return render(request, 'your_form_template.html')
+
 
 def advocates_by_type(request, advocate_type):
-    advocates = Advocate.objects.filter(type=advocate_type)
+    advocates = Advocatefin.objects.filter(type=advocate_type)
     return render(request, 'lawyerCard.html', {'Lawyers': advocates})
+
+def searchlawyer(request):
+    print(-1)
+    if request.method == "POST":
+        search_query = request.POST.get("searchval")
+        print(search_query)
+        advocates = Advocatefin.objects.filter(name__icontains=search_query)
+        context={
+
+        }
+        if len(advocates) ==0:
+            context['Lawyers']=advocates
+        else:
+            l11=[]
+            l11.append(advocates[0])
+            context['Lawyers']=l11
+
+       
+       
+        return render(request, 'lawyerCard.html', context)
+    else:
+        lawyer=Laweruser.objects.all()
+    # logout(request)
+        context = {
+            #  'lawyer':lawyer,
+            'lawyer':lawyer
+        }
+        names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
+        distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
+        advocates_list = []
+
+        for name_dict in distinct_names:
+            name = name_dict['name']
+            advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
+            if advocate:
+                advocates_list.append(advocate)
+        # print(type(advocates))
+        # print(advocates_list)
+                    # 'Lawyers': advocates
+        context['Lawyers']=advocates_list
+        return render(request, 'index2.html',context)
+ 
+
+def somebestadvocates(request):
+
+    lawyer=Laweruser.objects.all()
+    # logout(request)
+    context = {
+        #  'lawyer':lawyer,
+        'lawyer':lawyer
+    }
+    names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
+    distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
+    advocates_list = []
+
+    for name_dict in distinct_names:
+        name = name_dict['name']
+        advocate = Advocatefin.objects.filter(name=name).first()  
+        if advocate:
+            advocates_list.append(advocate)
+
+    # print(type(advocates))
+    # print(advocates_list)
+                # 'Lawyers': advocates
+    context['Lawyers']=advocates_list
+    return render(request, 'somebestadvocates.html',context)
+
+def Arbitrators_Mediators(request):
+    try:
+        advocates = Aribitration_mediator.objects.all()
+        return render(request, 'Arbitrators_Mediators.html', {'Lawyers': advocates})
+    except Aribitration_mediator.DoesNotExist:
+        return render(request, 'error.html', {'error_message': 'No lawyers found.'})
+    except Exception as e:
+        return render(request, 'error.html', {'error_message': f"An error occurred: {e}"})
+
+
+
+
+  
+
 
 
     

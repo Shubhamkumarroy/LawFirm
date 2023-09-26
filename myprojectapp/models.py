@@ -112,5 +112,39 @@ class Advocate(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+
+class Advocatefin(models.Model):
+    name = models.CharField(max_length=255, default='N/A')
+    location = models.CharField(max_length=255, default='N/A')
+    experience = models.CharField(max_length=255, default='N/A')
+    type = models.CharField(max_length=100,default='other')
+    rating = models.CharField(max_length=100, default='N/A')
+    image_url = models.URLField(default='https://example.com/default-image.jpg')
+    practice_area_skills = models.TextField(default="Criminals & Consumer Court")
+
+    def __str__(self):
+        return self.name
+
+class Advocatecatagoryfin(models.Model):
+    cat = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.cat
+    
+class Aribitration_mediator(models.Model):
+    name = models.CharField(max_length=255)
+    rating = models.CharField(max_length=100,null=True, blank=True)
+    experience = models.CharField(max_length=255, null=True, blank=True)
+    location = models.CharField(max_length=255, null=True, blank=True)
+    practice_areas = models.TextField(null=True, blank=True)
+    language = models.CharField(max_length=255, null=True, blank=True)
+    photo_url = models.URLField(null=True, blank=True)
+    contact_link = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
 
 # Create your models here.
