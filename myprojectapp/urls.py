@@ -13,7 +13,7 @@ urlpatterns = [
     path('accountcreate/',views.accountcreate,name='accountcreate'),
     path('blog/',views.blog,name="blog"),
     path('chat/<int:id1>/<int:id2>',views.chat,name="chat"),
-    path('readmore/<int:id1>',views.readmore,name='readmore'),
+    path('readmore/<int:id1>/<int:id2>',views.readmore,name='readmore'),
     path('dashboard/',views.dashboard,name='dashboard'),
     path('setting/',views.setting,name='setting'),
     path('lawyer/<int:id1>',views.lawyer,name='lawyer'),
@@ -25,11 +25,13 @@ urlpatterns = [
     path('submitproblem',views.submitproblem,name="submitproblem"),
     path('storedata',views.storedata,name="storedata"),
     path('advocates/<str:advocate_type>/', views.advocates_by_type, name='advocates_by_type'),
+    path('advocates_by_id/<int:id1>/', views.advocates_by_id, name='advocates_by_id'),
     path('searchlawyer',views.searchlawyer,name="searchlawyer"),
     path('somebestadvocates',views.somebestadvocates,name="somebestadvocates"),
     path('arbitration_mediation_lawyers_data',views.arbitration_mediation_lawyers_data,name="arbitration_mediation_lawyers_data"),
     path('webscrapdata',views.webscrapdata,name="webscrapdata"),
-     path('Arbitrators_Mediators',views.Arbitrators_Mediators,name="Arbitrators_Mediators"),
+    path('webscrapdatapage2',views.webscrapdatapage2,name="webscrapdatapage2"),    
+    path('Arbitrators_Mediators',views.Arbitrators_Mediators,name="Arbitrators_Mediators"),
 
 
 

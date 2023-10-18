@@ -11,5 +11,7 @@ git clone link
 
 //collaborator
 git pull origin master
+value="{{user.first_name}}"
+value="{{user.last_name}}"
 
 

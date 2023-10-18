@@ -33,7 +33,10 @@ from django.db.models import Subquery
 
 
 def get_gpt3_response(user_message):
-    api_key = "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"
+    api_key = os.environ.get('BOTAPIKEY')
+    
+
+    # # print(api_key)
     openai.api_key = api_key
     # Create a conversation prompt
     conversation_history = [
@@ -212,14 +215,14 @@ def storedata(request):
                 cat.save()
                 advocate.save()
 
-                # Print or store the extracted information for each lawyer
-                print(f"Type: {l1}")
-                print(f"Name: {name}")
-                print(f"Location: {location}")
-                print(f"Experience: {experience}")
-                # print(f"Contact Link: {contact_link}")
-                print(f"Rating: {rating}")
-                print()
+                # # print or store the extracted information for each lawyer
+                # print(f"Type: {l1}")
+                # print(f"Name: {name}")
+                # print(f"Location: {location}")
+                # print(f"Experience: {experience}")
+                # # print(f"Contact Link: {contact_link}")
+                # print(f"Rating: {rating}")
+                # print()
         else:
             print(f"Failed to retrieve the page for {l1}. Status code:", response.status_code)
 
@@ -251,66 +254,123 @@ def webscrapdata(request):
     list1.append("labour-service-lawyers")
     list1.append("media-entertainment-lawyers")
     list1.append("medical-negligence-lawyers")
-    # list1.append("property-lawyers")
-    # list1.append("rti-lawyers")
-    # list1.append("armed-forces-tribunal-lawyers")
-    # list1.append("consumer-court-lawyers")
+    list1.append("property-lawyers")
+    list1.append("rti-lawyers")
+    list1.append("armed-forces-tribunal-lawyers")
+    list1.append("consumer-court-lawyers")
     cnt=0
     max_page=2
     for l1 in list1:
-        # URL of the page for the current advocate type
-        print(l1)
         base_url = f'https://lawrato.com/{l1}'
         cnt+=1
         page_number=1
-        while page_number<=max_page:
-            print(page_number)
-            url = f'{base_url}?&page={page_number}'
-            page_number+=1
-            # Send an HTTP GET request to the URL
-            response = requests.get(url)
-
-           
-            if response.status_code == 200:
-                
-                soup = BeautifulSoup(response.text, 'html.parser')
-
-                
-                lawyer_listings = soup.find_all('div', class_='lawyer-item border-box')
-
-                
-                for lawyer in lawyer_listings:
-                    name = lawyer.find('h2', class_='media-heading').text.strip()
-                    location = lawyer.find('div', class_='location').text.strip()
-                    experience = lawyer.find('div', class_='experience').text.strip()
-                    image_url = lawyer.find('img', class_='media-object')['src']
-                    area_skill_div = lawyer.find('div', class_='area-skill')
-                    practice_area_skills = "Criminal, Consumer Court"
-                    if area_skill_div:
-                        div_contents = area_skill_div.find('div')
-                        if div_contents:
-                            practice_area_skills = div_contents.text.strip()
-
-                    rating = lawyer.find('span', class_='score').text.strip()
-                    advocate = Advocatefin(
-                        name=name,
-                        type=l1,
-                        location=location,
-                        experience=experience,
-                        rating=rating,
-                        image_url=image_url,
-                        practice_area_skills=practice_area_skills  
-                    )
-                
-                    cat = Advocatecatagoryfin(cat=l1)
-                    cat.save()
-                    advocate.save()
+        url = f'{base_url}?&page={page_number}'
+        page_number+=1
+        response = requests.get(url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            lawyer_listings = soup.find_all('div', class_='lawyer-item border-box')
+            for lawyer in lawyer_listings:
+                name = lawyer.find('h2', class_='media-heading').text.strip()
+                location = lawyer.find('div', class_='location').text.strip()
+                experience = lawyer.find('div', class_='experience').text.strip()
+                image_url = lawyer.find('img', class_='media-object')['src']
+                area_skill_div = lawyer.find('div', class_='area-skill')
+                practice_area_skills = "Criminal, Consumer Court"
+                if area_skill_div:
+                    div_contents = area_skill_div.find('div')
+                    if div_contents:
+                        practice_area_skills = div_contents.text.strip()
+                rating = lawyer.find('span', class_='score').text.strip()
+                advocate = Advocatefin(
+                    name=name,
+                    type=l1,
+                    location=location,
+                    experience=experience,
+                    rating=rating,
+                    image_url=image_url,
+                    practice_area_skills=practice_area_skills  
+                )
+                cat = Advocatecatagoryfin(cat=l1)
+                cat.save()
+                advocate.save()
 
             else:
                 print(f"Failed to retrieve the page for {l1}. Status code:", response.status_code)
-        print()
 
     return render(request,'navebar.html')
+
+def webscrapdatapage2(request):
+    list1=[]
+    list1.append("arbitration-lawyers")
+    list1.append("anticipatory-bail-lawyers")
+    list1.append("banking-finance-lawyers")
+    list1.append("bankruptcy-insolvency-lawyers")
+    list1.append("breach-of-contract-lawyers")
+    list1.append("civil-lawyers")
+    list1.append("corporate-lawyers")
+    list1.append("family-lawyers")
+    list1.append("criminal-lawyers")
+    list1.append("cyber-crime-lawyers")
+    list1.append("domestic-violence-lawyers")
+    list1.append("divorce-lawyers")
+    list1.append("muslim-law-lawyers")
+    list1.append("wills-trusts-lawyers")
+    list1.append("copyright-patent-trademark-lawyers")
+    list1.append("court-marriage-lawyers")
+    list1.append("domestic-violence-lawyers")
+    list1.append("gst-lawyers")
+    list1.append("immigration-lawyers")
+    list1.append("labour-service-lawyers")
+    list1.append("media-entertainment-lawyers")
+    list1.append("medical-negligence-lawyers")
+    list1.append("property-lawyers")
+    list1.append("rti-lawyers")
+    list1.append("armed-forces-tribunal-lawyers")
+    list1.append("consumer-court-lawyers")
+    cnt=0
+    max_page=2
+    for l1 in list1:
+        base_url = f'https://lawrato.com/{l1}'
+        cnt+=1
+        page_number=1
+        url = f'{base_url}?&page={page_number}'
+        page_number+=1
+        response = requests.get(url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            lawyer_listings = soup.find_all('div', class_='lawyer-item border-box')
+            for lawyer in lawyer_listings:
+                name = lawyer.find('h2', class_='media-heading').text.strip()
+                location = lawyer.find('div', class_='location').text.strip()
+                experience = lawyer.find('div', class_='experience').text.strip()
+                image_url = lawyer.find('img', class_='media-object')['src']
+                area_skill_div = lawyer.find('div', class_='area-skill')
+                practice_area_skills = "Criminal, Consumer Court"
+                if area_skill_div:
+                    div_contents = area_skill_div.find('div')
+                    if div_contents:
+                        practice_area_skills = div_contents.text.strip()
+                rating = lawyer.find('span', class_='score').text.strip()
+                advocate = Advocatefin(
+                    name=name,
+                    type=l1,
+                    location=location,
+                    experience=experience,
+                    rating=rating,
+                    image_url=image_url,
+                    practice_area_skills=practice_area_skills  
+                )
+                cat = Advocatecatagoryfin(cat=l1)
+                cat.save()
+                advocate.save()
+
+            else:
+                print(f"Failed to retrieve the page for {l1}. Status code:", response.status_code)
+
+    return render(request,'navebar.html')
+
+
 
 
 
@@ -372,7 +432,7 @@ def arbitration_mediation_lawyers_data(request):
             photo_element = lawyer.find('img', class_='card-img')
             photo_url = photo_element['src'] if photo_element else None
 
-            # Print or store the extracted information for each lawyer, including photo URL
+            # # print or store the extracted information for each lawyer, including photo URL
             lawyer_instance =Aribitration_mediator(
             name=name,
             rating=rating,
@@ -448,8 +508,8 @@ def signup(request):
                     advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
                     if advocate:
                         advocates_list.append(advocate)
-                # print(type(advocates))
-                print(advocates_list)
+                # # print(type(advocates))
+                # print(advocates_list)
                             # 'Lawyers': advocates
                 context['Lawyers']=advocates_list
                 
@@ -515,8 +575,8 @@ def signuplawyer(request):
                     advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
                     if advocate:
                         advocates_list.append(advocate)
-                # print(type(advocates))
-                print(advocates_list)
+                # # print(type(advocates))
+                # print(advocates_list)
                             # 'Lawyers': advocates
                 context['Lawyers']=advocates_list
                         
@@ -550,7 +610,7 @@ def loginuser(request):
                 obj = Blog.objects.all()
                 # # lawyer=Lawyer.objects.all()
                 lawyer=Laweruser.objects.all()
-                print(lawyer)
+                # print(lawyer)
                 context = {
                     'obj': obj,
                     'user_d': user_d,
@@ -567,8 +627,8 @@ def loginuser(request):
                     advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
                     if advocate:
                         advocates_list.append(advocate)
-                # print(type(advocates))
-                print(advocates_list)
+                # # print(type(advocates))
+                # print(advocates_list)
                             # 'Lawyers': advocates
                 context['Lawyers']=advocates_list
                 return render(request, 'index2.html', context)
@@ -600,8 +660,8 @@ def logoutuser(request):
             advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
             if advocate:
                 advocates_list.append(advocate)
-        # print(type(advocates))
-        print(advocates_list)
+        # # print(type(advocates))
+        # print(advocates_list)
                     # 'Lawyers': advocates
         context['Lawyers']=advocates_list
         return render(request, 'index2.html',context)
@@ -623,18 +683,18 @@ def index(request):
     }
     names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
     distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
-    print(distinct_names)
+    # print(distinct_names)
     advocates_list = []
     # ad=Advocatefin.objects.all()
-    # print(len(ad))
+    # # print(len(ad))
 
     for name_dict in distinct_names:
         name = name_dict['name']
         advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
         if advocate:
             advocates_list.append(advocate)
-    # print(type(advocates))
-    # print(advocates_list)
+    # # print(type(advocates))
+    # # print(advocates_list)
                 # 'Lawyers': advocates
     context['Lawyers']=advocates_list
     # return render(request, 'index2.html',context)
@@ -665,11 +725,11 @@ def home(request):
         advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
         if advocate:
             advocates_list.append(advocate)
-    # print(type(advocates))
-    print(advocates_list)
+    # # print(type(advocates))
+    # print(advocates_list)
                 # 'Lawyers': advocates
     context['Lawyers']=advocates_list
-    # print
+    # # print
     return render(request, 'index2.html',context)
 
 @csrf_exempt
@@ -688,7 +748,13 @@ def blog(request):
     try:
         if request.method == "GET":
             obj = Blog.objects.all()
-            context = {'obj': obj}
+            sz=len(obj)
+            advocates = Advocatefin.objects.all()[:sz]
+            ziped_list=list(zip(obj,advocates))
+            # # print(ziped_list)
+            # # print(advocates)
+            # print(obj)
+            context = {'obj': obj,'advocates':advocates,'ziped_list':ziped_list}
             return render(request, 'blog.html', context)
     except Exception as e:
         error_message = f"An error occurred: {str(e)}"
@@ -727,13 +793,28 @@ def chat(request,receiver_id):
     
 
 
-def readmore(request, id1):
+def readmore(request, id1, id2):
     try:
+
         if request.method == "GET":
+            
             obj = Blog.objects.filter(pk=id1)
+            lawyer=Advocatefin.objects.filter(pk=id2)
             context = {
-                'obj': obj[0]
+                'obj': obj[0],
+                'lawyer':lawyer[0]
             }
+            blog = Blog.objects.all()[:4]
+           
+            sz=len(blog)
+            # print(sz)
+            # print(blog)
+            advocates = Advocatefin.objects.all()[:sz]
+            # print(advocates)
+            ziped_list=list(zip(blog,advocates))
+            # print(ziped_list)
+            # print(len(ziped_list))
+            context['ziped_list']=ziped_list
             return render(request, 'blogafteropen.html', context)
     except Exception as e:
         error_message = f"An error occurred: {str(e)}"
@@ -741,9 +822,9 @@ def readmore(request, id1):
 
 def dashboard(request):
     try:
-        # print(request.user.username)
+        # # print(request.user.username)
         # user=User_detail.objects.filter(pk=request.user.id)
-        # print(user)
+        # # print(user)
         # return render(request,'navebar.html')
         return render(request, 'profile.html')
     except Exception as e:
@@ -765,7 +846,7 @@ def lawyer(request,id1):
         context={
             'lawyer':lawyer[0],
         }
-        print(lawyer)
+        # print(lawyer)
         # return render(request,'navebar.html')
        
         
@@ -781,17 +862,17 @@ def send_chat_request(request,receiver_id):
         chat_request.save()
         messages.success(request, 'abhi accept nhi hua hai')
         lawyer=Extradetaillawer.objects.filter(pk=receiver_id)
-        print(lawyer)
+        # print(lawyer)
         chatrequest=ChatRequest.objects.filter(receiver=lawyer[0])
         cnt=len(chatrequest)
-        print(cnt)
+        # print(cnt)
         context={
             'lawyer':lawyer[0],
             'cnt':cnt
         }
         if cnt!=0:
             context['chatrequest']=chatrequest[0]
-        print(context)
+        # print(context)
         # return render(request,'navebar.html')
         return render(request, 'lawyer.html',context)
     except Exception as e:
@@ -808,7 +889,7 @@ def accept_chat_request(request, request_id):
         chat_request.save()
         return redirect('chat', chat_request.receiver.id)
     except Exception as e:
-        print(str(e))  
+        # print(str(e))  
         
         return render(request, 'error.html', {'error_message': 'An error occurred while processing your request'})
 
@@ -823,7 +904,7 @@ def rooms(request):
 def room(request, id1,id2):
     room = Room.objects.get(pk=id2)
     lawyer=Laweruser.objects.filter(pk=id1)
-    print(lawyer)
+    # print(lawyer)
     room=lawyer[0].room
     messages = Message.objects.filter(room=room)[0:25]
     
@@ -853,10 +934,17 @@ def typelawyer(request,type):
 def update(request,id1):
     # write logic baad me not in priority
     try:
-        # print(request.user.username)
+        # # print(request.user.username)
         # user=User_detail.objects.filter(pk=request.user.id)
-        # print(user)
+        # # print(user)
         # return render(request,'navebar.html')
+        # if request.method=="POST":
+        #     User.username=request.user.username
+        #     User.email=request.POST['email']
+        #     User.first_name=request.POST['first_name']
+        #     User.last_name=request.POST['last_name']
+        #     User.save()
+            
         return render(request, 'profile.html')
     except Exception as e:
         error_message = f"An error occurred: {str(e)}"
@@ -880,8 +968,8 @@ def submitproblem(request):
         if request.method == "POST":
             city = request.POST.get('city', '')
             problem = request.POST.get('problem', '')
-            print(city)
-            print(problem)
+            # print(city)
+            # print(problem)
             if not city or not problem:
                 error_message = "Both 'city' and 'problem' are required."
                 return render(request, 'problem.html', {'error_message': error_message})
@@ -890,7 +978,7 @@ def submitproblem(request):
             res = fn(request)
             user_message += " "
             user_message += res
-            print(user_message)
+            # print(user_message)
 
             gpt3_response = get_gpt3_response(user_message)
             gpt3_response = gpt3_response.lower()
@@ -905,7 +993,7 @@ def submitproblem(request):
                     break
                 ind += 1
 
-            print(ans)
+            # print(ans)
 
             if len(ans) == 0:
                 ans += "criminal-lawyers"
@@ -925,32 +1013,42 @@ def submitproblem(request):
 def advocates_by_type(request, advocate_type):
     advocates = Advocatefin.objects.filter(type=advocate_type)
     return render(request, 'lawyerCard.html', {'Lawyers': advocates})
+def advocates_by_id(request,id1):
+    advocates = Advocatefin.objects.filter(pk=id1)
+    for l in advocates:
+        l.type=l.practice_area_skills
+    return render(request, 'lawyerCard.html', {'Lawyers': advocates})
+
 
 def searchlawyer(request):
-    print(-1)
+    # print(-1)
     if request.method == "POST":
         search_query = request.POST.get("searchval")
-        print(search_query)
+        # print(search_query)
         advocates = Advocatefin.objects.filter(name__icontains=search_query)
         context={
 
         }
         if len(advocates) ==0:
             context['Lawyers']=advocates
+            context['cn']=len(advocates)
         else:
             l11=[]
             l11.append(advocates[0])
             context['Lawyers']=l11
+            context['cn']=len(advocates)
 
        
        
         return render(request, 'lawyerCard.html', context)
     else:
         lawyer=Laweruser.objects.all()
+
     # logout(request)
         context = {
             #  'lawyer':lawyer,
             'lawyer':lawyer
+
         }
         names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
         distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
@@ -961,10 +1059,11 @@ def searchlawyer(request):
             advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
             if advocate:
                 advocates_list.append(advocate)
-        # print(type(advocates))
-        # print(advocates_list)
+        # # print(type(advocates))
+        # # print(advocates_list)
                     # 'Lawyers': advocates
         context['Lawyers']=advocates_list
+        context['cn']=5
         return render(request, 'index2.html',context)
  
 
@@ -986,8 +1085,8 @@ def somebestadvocates(request):
         if advocate:
             advocates_list.append(advocate)
 
-    # print(type(advocates))
-    # print(advocates_list)
+    # # print(type(advocates))
+    # # print(advocates_list)
                 # 'Lawyers': advocates
     context['Lawyers']=advocates_list
     return render(request, 'somebestadvocates.html',context)

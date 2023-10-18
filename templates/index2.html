@@ -70,39 +70,45 @@
             {% comment %} <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit.subham madarchod hahahhahahah</p> {% endcomment %}
 
         </div>
-        <div class="mx-24 flex justify-between ">       
+        <div class="mx-24 flex justify-between ">   
+        <!-- <a href="{% url "consult" %}">    -->
           <div class="w-64  bg-white border border-gray-200 rounded-lg shadow ">
-            {% comment %} <a href="#"> {% endcomment %}
+             <a href="{% url "consult" %}"> 
              <img class="rounded-t-md h-48 w-64"  src="{% static 'image/imgn3.jpg' %}" alt="" />
-            {% comment %} </a> {% endcomment %}
+            </a>
             <div class="px-4">
-             {% comment %} <a href="#"> {% endcomment %}
+              <a href="{% url "consult" %}"> 
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Legal Services</h5>
-             {% comment %} </a> {% endcomment %}
+
              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Find transparent and authenticate Legal Services at your disposal.</p>     
+           </a>
             </div>
           </div>
+        <!-- </a>  -->
+        <!-- <a href=""></a> -->
           <div class="w-64 bg-white border border-gray-200 rounded-lg shadow ">
-            {% comment %} <a href="#"> {% endcomment %}
+            <a href="{% url "blog" %}">
              <img class="rounded-t-md h-48 w-64 " src="{% static 'image/bloging.jpeg' %}" alt="" />
-            {% comment %} </a> {% endcomment %}
+            </a>
             <div class="px-4">
-             {% comment %} <a href="#"> {% endcomment %}
+             <a href="{% url "blog" %}">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Blogging space</h5>
-             {% comment %} </a> {% endcomment %}
+            
              
              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Know whats going on recently in the judicial world.Recent Cases , thoughts.</p>     
+            </a>
             </div>
           </div> 
           <div class="w-64 bg-white border border-gray-200 rounded-lg shadow ">
-            {% comment %} <a href="#"> {% endcomment %}
+            <a href="{% url "consult" %}">
              <img class="rounded-t-md h-48 w-64" src="{% static 'image/cyclo.jpeg' %}" alt="" />
-            {% comment %} </a> {% endcomment %}
+            </a>
             <div class="px-4">
-             {% comment %} <a href="#"> {% endcomment %}
+             <a href="{% url "consult" %}">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Customized Solution</h5>
-             {% comment %} </a> {% endcomment %}
+             
              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Tell your legal problem and get recommended the best lawyers with AI enabled search </p>     
+            </a>
             </div>
           </div> 
           <div class="w-64 bg-white border border-gray-200 rounded-lg shadow ">
@@ -213,9 +219,9 @@
                     <p class="my-4">"I recently used this lawyer finding website to help me navigate a tricky legal situation. The platform was incredibly user-friendly, making it easy for me to input my requirements and get matched with the perfect lawyer. The lawyer I found through this website was exceptional—knowledgeable, responsive, and ultimately helped me resolve my legal issues. I highly recommend this website to anyone in need of legal assistance."</p>
                 </blockquote>
                 <figcaption class="flex items-center justify-center space-x-3">
-                    <img class="rounded-full w-10 h-10" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
+                    <img class="rounded-full w-10 h-10" src="{% static "image/shubham1.jpg" %}">
                     <div class="space-y-0.5 font-medium ">
-                        <div>Shivam</div>
+                        <div>Shubham kumar</div>
                         {% comment %}  {% endcomment %}
                     </div>
                 </figcaption>    
@@ -229,9 +235,9 @@
                     <p class="my-4">"I had a pressing legal matter and needed to find a lawyer quickly. This website came to my rescue! The process of finding a suitable lawyer was seamless and efficient. The platform provided me with a list of qualified lawyers based on my needs and location. I was able to compare their profiles and choose the one that best fit my requirements. Thanks to this website, I found a fantastic lawyer who handled my case expertly. Five stars!"</p>
                 </blockquote>
                 <figcaption class="flex items-center justify-center space-x-3">
-                    <img class="rounded-full w-10 h-10" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
+                    <img class="rounded-full w-10 h-10" src="{% static "image/krish.jpeg" %}" alt="profile picture">
                     <div class="space-y-0.5 font-medium ">
-                        <div>Koushik Das</div>
+                        <div>Krish Srivastava</div>
                         
                     </div>
                 </figcaption>    
@@ -324,7 +330,7 @@
            
           <div class="card-container mb-5">
           {% for l in Lawyers  %}
-            <a href="#" class="decoration">
+            <a href="{% url "advocates_by_id" l.id %}" class="decoration">
                 <div class="card">
                   <div class="d-flex justify-content-center ">
                     <img class="rounded-t-md" src="{{ l.image_url }}"  >

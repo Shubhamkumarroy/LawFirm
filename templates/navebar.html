@@ -9,9 +9,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <style>
+        .shubham{
+            /* margin-left: 750px; */
+            text-align: center;
+            font-weight: bold;
+            font-size: 40px;
+        }
+    </style>
 
 </head>
-<body>
+<body >
 
     <section id="NAVBAR">
         <nav class="bg-black border-gray-200 z-50">
@@ -24,7 +32,7 @@
                 <div class="flex items-center md:order-2">
                     <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 " id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                       {% comment %} <span class="sr-only">Open user menu</span> {% endcomment %}
-                      <img class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 " src="{% static 'image/prof.png' %}" alt="Bordered avatar">
+                      <img class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 " src="{% static 'image/shubham1.jpg' %}" alt="Bordered avatar">
                     </button>
                     <!-- Dropdown menu -->
                     <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow " id="user-dropdown">
@@ -37,7 +45,7 @@
                           <a href="{% url "dashboard" %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Dashboard</a>
                         </li>
                         <li>
-                          <a href="{% url "setting" %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
                         </li>
                         <li>
                           <a href="{% url 'logoutuser' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
