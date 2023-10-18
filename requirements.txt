@@ -37,7 +37,7 @@ redis==5.0.0
 requests==2.31.0
 service-identity==21.1.0
 six==1.16.0
-soupsieve==2.5
+soupsieve==2.4.1
 sqlparse==0.4.4
 tqdm==4.66.1
 Twisted==23.8.0
