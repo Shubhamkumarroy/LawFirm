@@ -710,7 +710,7 @@ def index(request):
     # return render(request, 'index2.html',context)
     try:
         if request.user.is_authenticated:
-            return render(request, 'index2.html', context)
+            return render(request, 'index2.html')
         else:
             return render(request, 'signup.html')
     except Exception as e:

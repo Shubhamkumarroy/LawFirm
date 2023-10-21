@@ -329,7 +329,7 @@
         </div>
            
           <div class="card-container mb-5">
-          {% for l in Lawyers  %}
+          {% comment %} {% for l in Lawyers  %}
             <a href="{% url "advocates_by_id" l.id %}" class="decoration">
                 <div class="card">
                   <div class="d-flex justify-content-center ">
@@ -343,7 +343,7 @@
                   </div>
                 </div>
               </a>
-            {% endfor %} 
+            {% endfor %}  {% endcomment %}
             
       
       
