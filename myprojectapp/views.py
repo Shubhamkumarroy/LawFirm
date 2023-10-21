@@ -293,8 +293,8 @@ def webscrapdata(request):
                     practice_area_skills=practice_area_skills  
                 )
                 print(name,type)
-                cat = Advocatecatagoryfin(cat=l1)
-                cat.save()
+                # cat = Advocatecatagoryfin(cat=l1)
+                # cat.save()
                 # advocate.save()
 
             else:
@@ -363,8 +363,8 @@ def webscrapdatapage2(request):
                     image_url=image_url,
                     practice_area_skills=practice_area_skills  
                 )
-                cat = Advocatecatagoryfin(cat=l1)
-                cat.save()
+                # cat = Advocatecatagoryfin(cat=l1)
+                # cat.save()
                 advocate.save()
 
             else:
