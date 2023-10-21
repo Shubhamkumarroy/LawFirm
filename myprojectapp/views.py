@@ -211,6 +211,7 @@ def storedata(request):
                 rating=rating,
                 image_url=image_url
                 )
+                print(name)
                 cat=Advocatecatagory(cat=l1)
                 cat.save()
                 advocate.save()
@@ -291,9 +292,10 @@ def webscrapdata(request):
                     image_url=image_url,
                     practice_area_skills=practice_area_skills  
                 )
+                print(name,type)
                 cat = Advocatecatagoryfin(cat=l1)
                 cat.save()
-                advocate.save()
+                # advocate.save()
 
             else:
                 print(f"Failed to retrieve the page for {l1}. Status code:", response.status_code)
@@ -681,22 +683,30 @@ def index(request):
         #  'lawyer':lawyer,
         'lawyer':lawyer
     }
-    names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
-    distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
-    # print(distinct_names)
-    advocates_list = []
-    # ad=Advocatefin.objects.all()
-    # # print(len(ad))
+    # names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
+    # distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
+    # # print(distinct_names)
+    # advocates_list = []
+    # # ad=Advocatefin.objects.all()
+    # # # print(len(ad))
 
-    for name_dict in distinct_names:
-        name = name_dict['name']
-        advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
-        if advocate:
-            advocates_list.append(advocate)
+    # for name_dict in distinct_names:
+    #     name = name_dict['name']
+    #     advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
+    #     if advocate:
+    #         advocates_list.append(advocate)
     # # print(type(advocates))
     # # print(advocates_list)
                 # 'Lawyers': advocates
-    context['Lawyers']=advocates_list
+    advocates_list=Advocatefin.objects.all()
+    adv1=[]
+    cnt=0
+    for l1 in advocates_list:
+        adv1.append(l1)
+        cnt+=1
+        if cnt==6:
+            break
+    context['Lawyers']=adv1
     # return render(request, 'index2.html',context)
     try:
         if request.user.is_authenticated:
@@ -716,20 +726,15 @@ def home(request):
         #  'lawyer':lawyer,
         'lawyer':lawyer
     }
-    names_to_exclude = ["Advocate Raman Jain","Advocate Hemant Kumar Joshi"]
-    distinct_names = Advocatefin.objects.exclude(name__in=names_to_exclude).values('name').distinct().order_by('-rating')[:6]
-    advocates_list = []
-
-    for name_dict in distinct_names:
-        name = name_dict['name']
-        advocate = Advocatefin.objects.filter(name=name).first()  # Assuming there's only one advocate with a given name
-        if advocate:
-            advocates_list.append(advocate)
-    # # print(type(advocates))
-    # print(advocates_list)
-                # 'Lawyers': advocates
-    context['Lawyers']=advocates_list
-    # # print
+    advocates_list=Advocatefin.objects.all()
+    adv1=[]
+    cnt=0
+    for l1 in advocates_list:
+        adv1.append(l1)
+        cnt+=1
+        if cnt==6:
+            break
+    context['Lawyers']=adv1
     return render(request, 'index2.html',context)
 
 @csrf_exempt
