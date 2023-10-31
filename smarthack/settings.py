@@ -112,6 +112,10 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     # 'default':dj_database_url.parse('postgres://wakil_babu_4h9j_user:fgrqjp4rixXcgIO75a2kJ6Qi259Fk7bo@dpg-ckuei33amefc73fvvkag-a.oregon-postgres.render.com/wakil_babu_4h9j')
 }
+# DATABASES={
+
+# }
+# DATABASES['default']=dj_database_url.parse("postgres://wakil_babudb_user:faCldeEqN34z7nsefHnPjB2ZQsMiyqjN@dpg-cl0e31i37rbc739jeaeg-a/wakil_babudb")
 
 
 # Password validation
