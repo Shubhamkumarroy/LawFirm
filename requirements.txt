@@ -51,6 +51,6 @@ txaio==23.1.1
 typing_extensions==4.7.1
 tzdata==2023.3
 urllib3==2.0.5
-xmod==1.6.0
+xmod==1.5.0
 yarl==1.9.2
 zope.interface==6.0
