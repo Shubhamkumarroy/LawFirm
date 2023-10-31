@@ -1,0 +1,326 @@
+
+{% extends "navebar.html" %}
+{% block lawyer %}
+<div class="flex">
+  <div  class="w-1/4 px-5 pt-5 mt-4 ml-4 pb-5 bg-white rounded-md shadow flex-col justify-start items-center gap-6 inline-flex">
+    <div class="w-[302px] h-[244px] flex-col justify-start items-center gap-4 inline-flex">
+        <div class="flex-col justify-start items-center gap-4 flex">
+          <img class="w-[120px] h-[120px] rounded" src="https://randomuser.me/api/portraits/men/6.jpg" />
+          <div class="text-center text-zinc-700 text-opacity-100 text-xl font-bold font-['Roboto']  leading-loose tracking-tight">{{lawyer.name}}</div>
+        </div>
+        <div class="justify-center items-start gap-6 inline-flex">
+          <div class="justify-start items-center gap-4 flex">
+            <div class="p-2.5 bg-gray-800  rounded-md justify-start items-start gap-2.5 flex">
+              <div class="w-6 h-6 relative">
+                <svg class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v3m5-3v3m5-3v3M1 7h7m1.506 3.429 2.065 2.065M19 7h-2M2 3h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm6 13H6v-2l5.227-5.292a1.46 1.46 0 0 1 2.065 2.065L8 16Z"/>
+              </svg>
+              </div>
+            </div>
+            <div class="flex-col justify-start items-start inline-flex">
+              <div class="text-zinc-700 text-opacity-90 text-2xl font-normal font-['Roboto'] leading-loose">12 </div>
+              <div class="text-zinc-700 text-opacity-70 text-sm font-normal font-['Inter'] leading-tight tracking-tight">Experience</div>
+            </div>
+          </div>
+          <div class="justify-start items-center gap-4 flex">
+            <div class="p-2.5 bg-gray-800 rounded-md justify-start items-start gap-2.5 flex">
+              <div class="w-6 h-6 relative">
+                
+                  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                    <path d="M4.09 7.586A1 1 0 0 1 5 7h13V6a2 2 0 0 0-2-2h-4.557L9.043.8a2.009 2.009 0 0 0-1.6-.8H2a2 2 0 0 0-2 2v14c.001.154.02.308.058.457L4.09 7.586Z"/>
+                    <path d="M6.05 9 2 17.952c.14.031.281.047.424.048h12.95a.992.992 0 0 0 .909-.594L20 9H6.05Z"/>
+                  </svg>
+        
+              </div>
+            </div>
+            <div class="flex-col justify-start items-start inline-flex">
+              <div class="text-zinc-700 text-opacity-90 text-2xl font-normal font-['Roboto'] leading-loose">23</div>
+              <div class="text-zinc-700 text-opacity-70 text-sm font-normal font-['Inter'] leading-tight tracking-tight">Cases </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <di v class="flex-col justify-start items-start gap-4 flex">
+      <div class="text-center text-zinc-700 text-opacity-90 text-xl font-bold font-['Roboto'] leading-loose tracking-tight">Details</div>
+      <div class="w-[300px] h-[0px] border border-zinc-700 border-opacity-10"></div>
+      <div class="flex-col justify-start items-start gap-2 flex">
+        <div class="text-center"><span class="text-zinc-700 text-opacity-90 text-m font-bold font-['Roboto'] leading-snug tracking-tight">Username: </span><span style="text-zinc-700 text-opacity-70 text-sm font-normal font-['Inter'] leading-tight tracking-tight">@{{lawyer.name}}</span></div>
+        
+          
+        <div class="text-center"><span class="text-zinc-700 text-opacity-90 font-bold text-m font-bold font-['Roboto'] leading-snug tracking-tight">Email: </span><span style="text-zinc-700 text-opacity-70 text-sm font-normal font-['Inter'] leading-tight tracking-tight">{{lawyer.email}}</span></div>
+        <div class="text-center"><span class="text-zinc-700 text-opacity-90 font-bold text-m font-bold font-['Roboto'] leading-snug tracking-tight">Role: </span><span style="text-zinc-700 text-opacity-70 text-sm font-normal font-['Inter'] leading-tight tracking-tight">Designer</span></div>
+        <div class="text-center"><span class="text-zinc-700 text-opacity-90 font-bold text-m font-bold font-['Roboto'] leading-snug tracking-tight">Tax ID: </span><span style="text-zinc-700 text-opacity-70 text-sm font-normal font-['Inter'] leading-tight tracking-tight">7727563778</span></div>
+        <div class="text-center"><span class="text-zinc-700 text-opacity-90 font-bold text-m font-bold font-['Roboto'] leading-snug tracking-tight">Contact: </span><span style="text-zinc-700 text-opacity-70 text-sm font-normal font-['Inter'] leading-tight tracking-tight">{{lawyer.extradetaillawer.contact}}</span></div>
+        <div class="text-center"><span class="text-zinc-700 text-opacity-90 font-bold text-m font-bold font-['Roboto'] leading-snug tracking-tight">Language: </span><span style="text-zinc-700 text-opacity-70 text-sm font-normal font-['Inter'] leading-tight tracking-tight">English</span></div>
+        <div class="text-center"><span class="text-zinc-700 text-opacity-90 font-bold text-m font-bold font-['Roboto'] leading-snug tracking-tight">Country: </span><span style="text-zinc-700 text-opacity-70 text-sm font-normal font-['Inter'] leading-tight tracking-tight">{{lawyer.extradetaillawer.country}}</span></div>
+      </div>
+    </di>
+    <div class="justify-center items-start gap-4 inline-flex">
+      
+      <a href="{% url "chat" user.id lawyer.id %}"><button type="button" class="px-6 py-3.5 text-base font-medium text-white inline-flex items-center bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center ">
+        <svg class="w-4 h-4 text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+          <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
+          <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
+        </svg>
+        Contact
+      </button></a>
+        
+      
+    </div>
+
+    </div>
+
+    <div class="w-3/4 mt-4 px-5 pt-5">
+     
+      <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+             <li class="mr-2" role="presentation">
+                 <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Bio</button>
+             </li>
+             <li class="mr-2" role="presentation">
+                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">User Review</button>
+             </li>
+             <li class="mr-2" role="presentation">
+                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Cases</button>
+             </li>
+             <li role="presentation">
+                 <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Contacts</button>
+             </li>
+         </ul>
+     </div>
+     <div id="myTabContent">
+
+         <div class="hidden p-4 rounded-lg " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div>
+
+            <p class="mb-3 text-gray-800 ">Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.</p>
+          <p class="text-gray-800 ">Deliver great service experiences fast - without the complexity of traditional ITSM solutions.Accelerate critical development work, eliminate toil, and deploy changes with ease, with a complete audit trail for every change.</p>
+          </div>  
+           
+          <div class="mt-6 mb-4">
+            <h2 class=" text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl ">Social Media Handles:</h2>
+          </div>
+          
+          <div>
+                
+            <button type="button" class="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2">
+            <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
+            <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+            </svg>
+            Facebook
+            </button>
+            <button type="button" class="text-white bg-gray-800 h focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  mr-2 mb-2">
+            <!-- <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
+            <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd"/>
+            </svg> -->
+            
+            <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 17">
+            <path fill="currentColor" d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z"/>
+            </svg>
+            
+            
+              Twitter
+            </button>
+            
+            <button type="button" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+            <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+            <path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"/>
+            </svg>
+            Email
+            </button>
+            
+            
+                          </div>
+
+         </div>
+
+          
+         <div class="hidden p-4 " id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+            
+<div class="grid mb-8 border border-gray-200 rounded-lg shadow-sm  md:mb-12 md:grid-cols-2">
+<figure class="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-tl-lg md:border-r ">
+  <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 ">
+      <h3 class="text-lg font-semibold text-gray-900 ">Very easy this was to integrate</h3>
+      <p class="mt-4">If you care for your time, I hands down would go with this."</p>
+  </blockquote>
+  <a href="#" >
+    <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 ">Read More</button>
+
+  </a>
+  <figcaption class="flex items-center justify-center space-x-3">
+      <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
+      <div class="space-y-0.5 font-medium ">
+          <div>Bonnie Green</div>
+          <div class="text-sm text-gray-500 ">Developer at Open AI</div>
+      </div>
+  </figcaption>    
+</figure>
+<figure class="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-tr-lg ">
+  <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 ">
+      <h3 class="text-lg font-semibold text-gray-900 ">Solid foundation for any project</h3>
+      <p class="mt-4">Designing with Figma components that can be easily translated to the utility classes of Tailwind CSS is a huge timesaver!"</p>
+  </blockquote>
+  <a href="#" >
+    <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 ">Read More</button>
+
+  </a>
+  <figcaption class="flex items-center justify-center space-x-3">
+      <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png" alt="profile picture">
+      <div class="space-y-0.5 font-medium ">
+          <div>Roberta Casas</div>
+          <div class="text-sm text-gray-500 ">Lead designer at Dropbox</div>
+      </div>
+  </figcaption>    
+</figure>
+<figure class="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-bl-lg md:border-b-0 md:border-r ">
+  <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 ">
+      <h3 class="text-lg font-semibold text-gray-900 ">Mindblowing workflow</h3>
+      <p class="mt-4">Aesthetically, the well designed components are beautiful and will undoubtedly level up your next application."</p>
+  </blockquote>
+  <a href="#" >
+    <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 ">Read More</button>
+
+  </a>
+  <figcaption class="flex items-center justify-center space-x-3">
+      <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="profile picture">
+      <div class="space-y-0.5 font-medium ">
+          <div>Jese Leos</div>
+          <div class="text-sm text-gray-500 ">Software Engineer at Facebook</div>
+      </div>
+  </figcaption>    
+</figure>
+<figure class="flex flex-col items-center justify-center p-8 text-center bg-white border-gray-200 rounded-b-lg md:rounded-br-lg ">
+  <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 ">
+      <h3 class="text-lg font-semibold text-gray-900 ">Efficient Collaborating</h3>
+      <p class="mt-4">You have many examples that can be used to create a fast prototype for your team."</p>
+  </blockquote>
+
+  <a href="#" >
+    <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 ">Read More</button>
+
+  </a>
+  <figcaption class="flex items-center justify-center space-x-3">
+      <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="profile picture">
+      <div class="space-y-0.5 font-medium">
+          <div>Joseph McFall</div>
+          <div class="text-sm text-gray-500 ">CTO at Google</div>
+      </div>
+  </figcaption>    
+</figure>
+</div>
+
+         </div>
+
+
+         <div class="hidden p-4 rounded-lg  " id="settings" role="tabpanel" aria-labelledby="settings-tab">
+          <div class="grid gap-8 mb-4 ">
+            <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md ">
+                <div class="flex justify-between items-center mb-5 text-gray-500">
+                    <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded ">
+                        <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path></svg>
+                        Article
+                    </span>
+                    <span class="text-sm">12/08/2023</span>
+                </div>
+                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">India</Link></h2>
+                <p class="mb-5 font-light text-gray-500 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde iste molestiae assumenda, soluta velit ea, odit voluptates cumque, repellat debitis eveniet architecto a deleniti at esse nostrum ab optio sint?</p>
+                <div class="my-4">
+                    <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">Read More</button>
+    
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                       <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Green avatar" /> 
+                        <span class="font-medium ">
+                            Author : Author name
+                        </span>
+                    </div>
+                </div>
+            </article>
+    </div>
+
+    <div class="grid gap-8 ">
+      <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md ">
+          <div class="flex justify-between items-center mb-5 text-gray-500">
+              <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded ">
+                  <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path></svg>
+                  Article
+              </span>
+              <span class="text-sm">12/08/2023</span>
+          </div>
+          <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">India</Link></h2>
+          <p class="mb-5 font-light text-gray-500 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde iste molestiae assumenda, soluta velit ea, odit voluptates cumque, repellat debitis eveniet architecto a deleniti at esse nostrum ab optio sint?</p>
+          <div class="my-4">
+              <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">Read More</button>
+
+          </div>
+          <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                 <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Green avatar" /> 
+                  <span class="font-medium ">
+                      Author : Author name
+                  </span>
+              </div>
+          </div>
+      </article>
+</div>
+          
+         </div>
+         <div class="hidden p-4 rounded-lg  " id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+            <!-- <div class="flex-col">
+              <div class="mb-4">
+                <h2 class=" text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl ">Contact Us</h2>
+              </div>
+
+             <div>
+                 
+       <label for="message" class="block mb-2 text-sm font-medium text-gray-900 ">Your message</label>
+        <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your thoughts here..."></textarea>
+        <button type="submit" class="mt-2 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-gray-800 rounded-lg focus:ring-4 focus:ring-blue-200 ">
+          Publish post
+      </button>
+              </div> 
+              
+              
+             
+              
+              
+            </div> -->
+            {% comment %} {% if chatrequest.accepter %}{% endif %} {% endcomment %}
+
+            <a href="{% url "room" lawyer.id lawyer.room.id %}"><button>connect with {{lawyer.name}}</button></a>
+            {% block content %}
+            {% endblock %}
+    
+            {% block scripts %}
+            {% endblock %}
+           
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+     </div>
+     
+         </div>
+</div>
+<br>
+<br>
+<br>
+
+
+{% endblock  %}
+     
+ 
+    
+        
+          
+    
+
+    
+
+
+

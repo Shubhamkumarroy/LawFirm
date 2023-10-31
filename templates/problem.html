@@ -1,0 +1,31 @@
+{% extends "navebar.html" %}
+{% block problem %}
+<div>
+    <form action="{% url 'submitproblem' %}" method="post">
+        {% csrf_token %}
+        <div class="mx-auto w-1/2 mb-4 rounded-lg">
+            <div class="pt-12 pb-6">
+                <h1 class="ml-4 text-5xl font-extrabold">Search for a Lawyer</h1>
+            </div>
+
+            <div class="my-4 px-4 py-2">
+                <label for="city" class="block mb-2 text-sm font-medium text-gray-900">Location</label>
+                <input type="text" id="city" name="city" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="City..." required>
+            </div>
+
+            <div class="my-4 px-4 py-2">
+                <label for="problem" class="block mb-2 text-sm font-medium text-gray-900">Problem</label>
+                <textarea id="problem" name="problem" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="State your problem here..." required></textarea>
+            </div>
+
+            <div class="flex items-center justify-end px-3 py-2 mx-6">
+                <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
+                    Search
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+ 
+{% endblock  %}

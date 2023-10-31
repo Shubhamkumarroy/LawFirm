@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    
+    <form>
+        <div class="  mx-auto  w-1/2 mb-4  rounded-lg  ">
+     
+            <div class="pt-12 pb-6">
+                
+                
+                <h1 class="ml-4 text-5xl font-extrabold ">Search for a Lawyer</h1>
+       
+       
+              </div>
+
+
+           <div class="my-4 px-4 py-2 ">
+              <label for="message" class="block mb-2 text-sm font-medium text-gray-900 ">Location</label>
+              <textarea id="message" rows="1" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Title..."></textarea>
+          </div>
+     
+     
+            <div class="my-4 px-4 py-2  ">
+                <!-- <label for="comment" class="sr-only">Your Text</label>
+                <textarea id="comment" rows="8" class="w-full px-0 text-sm text-gray-900 bg-white border-0  focus:ring-0 " placeholder="Write a Blog..." value="" required></textarea> -->
+                
+             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 ">Problem </label>
+             <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="State your problem here..."></textarea>
+     
+            
+              </div>
+     
+     
+            <div class="flex items-center justify-end px-3 py-2 mx-6  ">
+                <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200  hover:bg-blue-800">
+                    Search
+                </button>
+               
+            </div>
+        </div>
+     </form>
+
+
+     <section id="FOOTER">
+        <div class="mt-8  ">
+            <footer class=" shadow bg-gray-900 ">
+                <div class="w-full max-w-screen-xl mx-auto p-4 md:py-6">
+                    <div class="sm:flex sm:items-center sm:justify-between">
+                        <a href="{% url "home" %}" class="flex items-center mb-4 sm:mb-0">
+                            <img src="{% static "image/lawyern.png" %}" class="h-8 mr-3" alt="Flowbite Logo" />
+                            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">LawFirm</span>
+                        </a>
+                        <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                            <li>
+                                <a href="#" class="mr-4 hover:underline md:mr-6 text-white ">About</a>
+                            </li>
+                            <li>
+                                <a href="#" class="mr-4 hover:underline md:mr-6 text-white">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#" class="mr-4 hover:underline md:mr-6 text-white">Licensing</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:underline text-white">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                    <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">LawFirm™</a>. All Rights Reserved.</span>
+                </div>
+            </footer>
+        </div>
+
+    </section>
+</body>
+</html>

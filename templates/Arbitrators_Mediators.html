@@ -1,0 +1,79 @@
+{% extends "navebar.html" %}
+{% load static %}
+{% block Arbitrators_by_type %}
+    <!-- component -->
+    <div class="p-4 my-12">
+      {% for l in Lawyers %}
+        <div class="flex flex-col justify-center my-6 ">
+            <div
+                class="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-lg shadow-lg p-3 max-w-xs md:max-w-xl mx-auto border border-white bg-white">
+                <div class="w-1/3  bg-white grid place-items-center">
+                    <img src="{{ l.photo_url }}" alt="{{ l.name }}" class="w-48 h-48 p-1 rounded-lg" />
+            </div>
+                    <div class="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
+                        <div class="flex justify-between item-center">
+                            
+                            <p class="text-gray-500 font-medium hidden md:block">{{l.practice_areas}}</p>
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                <p class="text-gray-600 font-bold text-sm ml-1">
+                                    {{l.rating}}
+                                    
+                                </p>
+                            </div>
+                            
+                        </div>
+                        <h3 class="font-black text-gray-800 md:text-3xl text-xl">{{l.name}}</h3>
+                        <p class="text-gray-500 font-medium hidden md:block">{{l.experience}}</p>
+                        <p class="md:text-md text-gray-500 text-base">The best kept secret of The Bahamas is the country’s sheer
+                            size and diversity. With 16 major islands, The Bahamas is an unmatched destination</p>
+                        <div class="flex item-center space-x-3">
+                            <svg class="mt-1 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                                <path d="M8 0a7.992 7.992 0 0 0-6.583 12.535 1 1 0 0 0 .12.183l.12.146c.112.145.227.285.326.4l5.245 6.374a1 1 0 0 0 1.545-.003l5.092-6.205c.206-.222.4-.455.578-.7l.127-.155a.934.934 0 0 0 .122-.192A8.001 8.001 0 0 0 8 0Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
+                            </svg>
+                           <span class="sr-only">Set location</span>
+                           <span class="font-normal text-gray-600 ">{{l.location}}</span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        {% endfor %}
+       
+    </div>
+    <section id="FOOTER">
+        <div class="mt-8  ">
+            <footer class=" shadow bg-gray-900 ">
+                <div class="w-full max-w-screen-xl mx-auto p-4 md:py-6">
+                    <div class="sm:flex sm:items-center sm:justify-between">
+                        <a href="{% url "home" %}" class="flex items-center mb-4 sm:mb-0">
+                            <img src="{% static "image/lawyern.png" %}" class="h-8 mr-3" alt="Flowbite Logo" />
+                            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">LawFirm</span>
+                        </a>
+                        <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                            <li>
+                                <a href="#" class="mr-4 hover:underline md:mr-6 text-white ">About</a>
+                            </li>
+                            <li>
+                                <a href="#" class="mr-4 hover:underline md:mr-6 text-white">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#" class="mr-4 hover:underline md:mr-6 text-white">Licensing</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:underline text-white">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                    <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">LawFirm™</a>. All Rights Reserved.</span>
+                </div>
+            </footer>
+        </div>
+
+    </section>
+
+{% endblock %}
