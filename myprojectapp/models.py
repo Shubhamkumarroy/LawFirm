@@ -1,45 +1,41 @@
 from django.db import models
-from django.db import models
-import email
-from operator import mod
-import uuid
-from django.db import models
-from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django.utils import timezone
-
-from datetime import datetime
 from django.utils import timezone
 
 class Room(models.Model):
     name = models.CharField(max_length=255)
 class Eitheruserlawyer(models.Model):
-    type=models.CharField(max_length=100)
+    type=models.CharField(max_length=255)
 class User_detail(models.Model):
     eitheruserlawyer = models.ForeignKey(Eitheruserlawyer, default=1,on_delete=models.CASCADE)
-    user_detail_name = models.CharField(max_length=100)
-    user_detail_email = models.CharField(max_length=100)
-    type = models.CharField(default='user', editable=False, max_length=100)
-    user_detail_password = models.CharField(max_length=100)
+    user_detail_name = models.CharField(max_length=255)
+    user_detail_email = models.CharField(max_length=255)
+    type = models.CharField(default='user', editable=False, max_length=255)
+    user_detail_password = models.CharField(max_length=255)
 
     def __str__(self):
         return self.user_detail_name
+class UserProfilePhoto(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)
+
+    def __str__(self):
+        return f'Profile Photo of {self.user.username}'
     
 class Extradetaillawer(models.Model):
-    catagory=models.CharField(max_length=100,default="N/A")
-    contact=models.CharField(max_length=100,default="N/A")
-    country=models.CharField(max_length=100,default="N/A")
+    catagory=models.CharField(max_length=255,default="N/A")
+    contact=models.CharField(max_length=255,default="N/A")
+    country=models.CharField(max_length=255,default="N/A")
 class Laweruser(models.Model):
     eitheruserlawyer = models.ForeignKey(Eitheruserlawyer,default=1, on_delete=models.CASCADE)
     extradetaillawer=models.ForeignKey(Extradetaillawer,default=1, on_delete=models.CASCADE)
     room=models.ForeignKey(Room,default=1,on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    fname = models.CharField(max_length=100)
-    lname = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    type = models.CharField(default='lawer', editable=False, max_length=100)
-    password = models.CharField(max_length=100)
+    name = models.CharField(max_length=255)
+    fname = models.CharField(max_length=255)
+    lname = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, null=True, blank=True)
+    type = models.CharField(default='lawer', editable=False, max_length=255, null=True, blank=True)
+    password = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
@@ -57,12 +53,12 @@ class Blog(models.Model):
         return self.title
 
 class Lawyer(models.Model):
-    name=models.CharField(max_length=100)
-    email=models.CharField(max_length=100)
-    password=models.CharField(max_length=100)
-    catagory=models.CharField(max_length=100)
-    contact=models.CharField(max_length=100)
-    country=models.CharField(max_length=100)
+    name=models.CharField(max_length=255)
+    email=models.CharField(max_length=255,)
+    password=models.CharField(max_length=255)
+    catagory=models.CharField(max_length=255)
+    contact=models.CharField(max_length=255)
+    country=models.CharField(max_length=255)
     def __str__(self):
         return self.name
 
@@ -106,8 +102,8 @@ class Advocate(models.Model):
     name = models.CharField(max_length=255, default='N/A')  # Default name is 'N/A'
     location = models.CharField(max_length=255, default='N/A')  # Default location is 'N/A'
     experience = models.CharField(max_length=255, default='N/A')  # Default experience is 'N/A'
-    type = models.CharField(max_length=100, default='Other')  # Default type is 'Other'
-    rating = models.CharField(max_length=100, default='N/A')  # Default rating is 'N/A'
+    type = models.CharField(max_length=255, default='Other')  # Default type is 'Other'
+    rating = models.CharField(max_length=255, default='N/A')  # Default rating is 'N/A'
     image_url = models.URLField(default='https://example.com/default-image.jpg')  # Default image URL
 
     def __str__(self):
@@ -119,8 +115,8 @@ class Advocatefin(models.Model):
     name = models.CharField(max_length=255, default='N/A')
     location = models.CharField(max_length=255, default='N/A')
     experience = models.CharField(max_length=255, default='N/A')
-    type = models.CharField(max_length=100,default='other')
-    rating = models.CharField(max_length=100, default='N/A')
+    type = models.CharField(max_length=255,default='other')
+    rating = models.CharField(max_length=255, default='N/A')
     image_url = models.URLField(default='https://example.com/default-image.jpg')
     practice_area_skills = models.TextField(default="Criminals & Consumer Court")
 
@@ -128,14 +124,14 @@ class Advocatefin(models.Model):
         return self.name
 
 class Advocatecatagoryfin(models.Model):
-    cat = models.CharField(max_length=100)
+    cat = models.CharField(max_length=255)
 
     def __str__(self):
         return self.cat
     
 class Aribitration_mediator(models.Model):
     name = models.CharField(max_length=255)
-    rating = models.CharField(max_length=100,null=True, blank=True)
+    rating = models.CharField(max_length=255,null=True, blank=True)
     experience = models.CharField(max_length=255, null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
     practice_areas = models.TextField(null=True, blank=True)

@@ -329,11 +329,11 @@
         </div>
            
           <div class="card-container mb-5">
-          {% comment %} {% for l in Lawyers  %}
+           {% for l in Lawyers  %}
             <a href="{% url "advocates_by_id" l.id %}" class="decoration">
                 <div class="card">
                   <div class="d-flex justify-content-center ">
-                    <img class="rounded-t-md" src="{{ l.image_url }}"  >
+                    <img class="class=rounded-full w-48 h-48" src="{{ l.image_url }}"  >
                   </div>
                   <div class="card-title">{{l.name}}</div>
                   <div class="card-text">
@@ -343,7 +343,7 @@
                   </div>
                 </div>
               </a>
-            {% endfor %}  {% endcomment %}
+            {% endfor %}
             
       
       

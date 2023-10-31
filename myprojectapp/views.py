@@ -30,6 +30,7 @@ import requests
 from bs4 import BeautifulSoup
 import openai
 from django.db.models import Subquery
+# from your_app.models import UserProfilePhoto
 
 
 def get_gpt3_response(user_message):
@@ -594,7 +595,13 @@ def signuplawyer(request):
     else:
         return render(request, 'signuplawer.html')
 
-    
+@login_required
+def upload_photo(request):
+    if request.method == 'POST' and 'profile_photo' in request.FILES:
+        user_profile = UserProfilePhoto.objects.get_or_create(user=request.user)[0]
+        user_profile.photo = request.FILES['profile_photo']
+        user_profile.save()
+    return redirect('profile')    
 @csrf_exempt
 def loginuser(request):
     if request.method == "POST":

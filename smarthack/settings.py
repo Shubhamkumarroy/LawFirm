@@ -110,6 +110,7 @@ CHANNEL_LAYERS = {
 # }
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    # 'default':dj_database_url.parse('postgres://wakil_babu_4h9j_user:fgrqjp4rixXcgIO75a2kJ6Qi259Fk7bo@dpg-ckuei33amefc73fvvkag-a.oregon-postgres.render.com/wakil_babu_4h9j')
 }
 
 
@@ -151,6 +152,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
    os.path.join(BASE_DIR,"static")
 ]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

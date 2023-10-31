@@ -32,6 +32,7 @@ urlpatterns = [
     path('webscrapdata',views.webscrapdata,name="webscrapdata"),
     path('webscrapdatapage2',views.webscrapdatapage2,name="webscrapdatapage2"),    
     path('Arbitrators_Mediators',views.Arbitrators_Mediators,name="Arbitrators_Mediators"),
+    path('upload_photo',views.upload_photo,name="upload_photo"),
 
 
 
