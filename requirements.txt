@@ -18,7 +18,7 @@ daphne==4.0.0
 dek==1.2.0
 dj-database-url==2.1.0
 Django==3.2.22
-export==0.2.1
+export==0.1.2
 frozenlist==1.3.3
 gunicorn==21.2.0
 hyperlink==21.0.0
