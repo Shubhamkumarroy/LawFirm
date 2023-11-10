@@ -15,7 +15,7 @@
     <div class="flex">
       
         <div class="w-1/3 flex-col px-24 py-6">
-            <img class="rounded-full w-48 h-48" src="{% if user.userprofilephoto.photo %}{{ user.userprofilephoto.photo.url }}{% else %}{% static "image/default.jpeg" %}{% endif %}" alt="Profile Photo">
+            <img class="rounded-full w-48 h-48" src="{% if user.userprofilephoto.photo %}{{ user.userprofilephoto.photo.url }}{% else %}{% static "image/tania.jpeg" %}{% endif %}" alt="Profile Photo">
             <h5 class="ml-8 mt-6 text-xl font-medium text-gray-900">{{ user.username }}</h5>
             <span class="ml-4 text-sm text-gray-500">Software Developer</span>
             <div class="mt-6 ml-6 pt-4">
@@ -72,11 +72,11 @@
     </div>
     <div class="grid md:grid-cols-2 md:gap-6">
       <div class="relative z-0 w-full mb-6 group">
-          <input type="tel"  name="phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="7780030668" required />
+          <input type="tel"  name="phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="9101533816" required />
           <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
       </div>
       <div class="relative z-0 w-full mb-6 group">
-          <input type="text" name="company" id="floating_company" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="N/A" required />
+          <input type="text" name="company" id="floating_company" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="HPE" required />
           <label for="floating_company" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Company</label>
       </div>
     </div>

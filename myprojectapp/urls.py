@@ -28,9 +28,7 @@ urlpatterns = [
     path('advocates_by_id/<int:id1>/', views.advocates_by_id, name='advocates_by_id'),
     path('searchlawyer',views.searchlawyer,name="searchlawyer"),
     path('somebestadvocates',views.somebestadvocates,name="somebestadvocates"),
-    path('arbitration_mediation_lawyers_data',views.arbitration_mediation_lawyers_data,name="arbitration_mediation_lawyers_data"),
-    path('webscrapdata',views.webscrapdata,name="webscrapdata"),
-    path('webscrapdatapage2',views.webscrapdatapage2,name="webscrapdatapage2"),    
+    path('arbitration_mediation_lawyers_data',views.arbitration_mediation_lawyers_data,name="arbitration_mediation_lawyers_data"),   
     path('Arbitrators_Mediators',views.Arbitrators_Mediators,name="Arbitrators_Mediators"),
     path('upload_photo',views.upload_photo,name="upload_photo"),
 

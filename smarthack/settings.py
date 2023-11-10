@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rc=z!19=ovdiq@&dq)jb*cft7z5+vxl%k=250_r0%&$-&5cuv^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -38,21 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'daphne' ,
+    'daphne' ,
     'channels' ,
     'django.contrib.staticfiles',
     'myprojectapp',
-    
-    # 'channels' ,
+    'channels' ,
 ]
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels_redis.core.RedisChannelLayer",
-#         "CONFIG": {
-#             "hosts": [("localhost", 6379)],
-#         },
-#     },
-# }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'smarthack.urls'
@@ -69,7 +69,7 @@ ROOT_URLCONF = 'smarthack.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,"templates")],
+        'DIRS': [os.path.join(BASE_DIR,"template")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,18 +100,18 @@ CHANNEL_LAYERS = {
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'smartindia',
-#         'USER': 'shubham',
-#         'PASSWORD':'Cus_ved@2002',
-#     }
-# }
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-    # 'default':dj_database_url.parse('postgres://wakil_babu_4h9j_user:fgrqjp4rixXcgIO75a2kJ6Qi259Fk7bo@dpg-ckuei33amefc73fvvkag-a.oregon-postgres.render.com/wakil_babu_4h9j')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'smartindia',
+        'USER': 'shubham',
+        'PASSWORD':'Cus_ved@2002',
+    }
 }
+# DATABASES = {
+#     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+#     # 'default':dj_database_url.parse('postgres://wakil_babu_4h9j_user:fgrqjp4rixXcgIO75a2kJ6Qi259Fk7bo@dpg-ckuei33amefc73fvvkag-a.oregon-postgres.render.com/wakil_babu_4h9j')
+# }
 # DATABASES={
 
 # }
@@ -164,3 +164,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'skroy7780@gmail.com'
+EMAIL_HOST_PASSWORD = 'ukjaixgpzinoehml'
+
+
+ACCOUNT_OTP_VERIFICATION = True

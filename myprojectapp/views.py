@@ -30,11 +30,16 @@ import requests
 from bs4 import BeautifulSoup
 import openai
 from django.db.models import Subquery
+from django.core.mail import send_mail
+from django.utils.crypto import get_random_string
+from smarthack.settings import EMAIL_HOST_USER
+
 # from your_app.models import UserProfilePhoto
 
 
 def get_gpt3_response(user_message):
-    api_key = os.environ.get('BOTAPIKEY')
+
+    api_key = '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'
     
 
     # # print(api_key)
@@ -479,6 +484,27 @@ def signup(request):
             email = request.POST['email']
             pass1 = request.POST['password']
             type=Eitheruserlawyer(type="user")
+            otp = get_random_string(length=6, allowed_chars='0123456789')
+            print(otp)
+            # user.profile.otp = otp  
+            # user.profile.save()
+            subject = 'Your OTP for Signup'
+            message = f'Your OTP is {otp}. Enter this code to complete your signup.'
+            from_email = 'shubhamkumar9264shu@gmail.com'
+            to_email = email
+            print(to_email)
+            send_mail(subject, message, from_email, [to_email],fail_silently=True)
+            
+
+
+
+
+
+
+
+
+
+
             type.save()
             myuser = User.objects.create_user(username, email, pass1)
             user_db = User_detail(eitheruserlawyer=type,user_detail_name=username, user_detail_email=email, user_detail_password=pass1)
