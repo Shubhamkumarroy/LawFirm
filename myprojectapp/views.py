@@ -457,7 +457,6 @@ def arbitration_mediation_lawyers_data(request):
 
     return render(request, 'navebar.html')
 
-
 def accountcreate(request):
         try:
             return render(request, 'signup.html')
