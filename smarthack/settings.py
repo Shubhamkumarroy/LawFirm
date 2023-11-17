@@ -109,9 +109,10 @@ DATABASES = {
         'PASSWORD':'Cus_ved@2002',
     }
 }
+
+# print(os.environ.get("DATABASE_URL"))
 # DATABASES = {
 #     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-#     # 'default':dj_database_url.parse('postgres://wakil_babu_4h9j_user:fgrqjp4rixXcgIO75a2kJ6Qi259Fk7bo@dpg-ckuei33amefc73fvvkag-a.oregon-postgres.render.com/wakil_babu_4h9j')
 # }
 # DATABASES={
 
