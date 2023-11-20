@@ -101,23 +101,23 @@ CHANNEL_LAYERS = {
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'smartindia',
-        'USER': 'shubham',
-        'PASSWORD':'Cus_ved@2002',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'smartindia',
+#         'USER': 'shubham',
+#         'PASSWORD':'Cus_ved@2002',
+#     }
+# }
 
 # print(os.environ.get("DATABASE_URL"))
 # DATABASES = {
 #     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 # }
-# DATABASES={
+DATABASES={
 
-# }
-# DATABASES['default']=dj_database_url.parse("postgres://wakil_babudb_user:faCldeEqN34z7nsefHnPjB2ZQsMiyqjN@dpg-cl0e31i37rbc739jeaeg-a/wakil_babudb")
+}
+DATABASES['default']=dj_database_url.parse("postgres://wakildb_user:rBL2Ha1UTAPDLJetUfKRdqIMW2RqTK0K@dpg-clbodobmot1c73atkkug-a.singapore-postgres.render.com/wakildb")
 
 
 # Password validation
